@@ -1,0 +1,398 @@
+.component-carrental {
+	margin-bottom:emCalc(20px);
+	
+	legend { background-color:transparent; }
+	
+	header {
+		@include grid-row($behavior: nest);
+		
+		.carrental-location-date {
+			@include grid-column(6);
+			
+			fieldset {
+				margin-top:0;
+				padding:$rem-base/2;
+				
+				> div {
+					@include grid-row($behavior:nest-collapse);
+					margin-top:emCalc(5px);
+
+					label {
+						@include grid-column(4, $collapse:true);
+						line-height:20px;
+					}
+					
+					.select,
+					p {
+						@include grid-column(8, $collapse:true);
+						font-size: rem-calc(13);
+						margin-bottom:emCalc(5px);
+					}
+				}
+			}
+		}
+	}
+	
+	.carrental-include {
+		@include grid-row($behavior: nest-collapse);
+		@include panel($bg:#fff, $padding:5px);
+		border-color:#fff;
+		color:$info-positive-color;
+		
+		> div {
+			@include grid-column(1, $collapse:true);
+			font-size:emCalc(20px);
+		}
+		
+		h6 {
+			@include grid-column(11, $collapse:true);
+			color:inherit !important;
+			
+			.has-tip {
+				color:inherit !important;
+			}
+		}
+	}
+	
+	.carrental-footer {
+		@include grid-row($behavior: nest-collapse);
+		@include panel($bg:#fff, $padding:5px);
+		border-color:#fff;
+		box-shadow:none;
+		margin-top:$rem-base;
+		
+		h6 {
+			@include grid-column(12, $collapse:true);
+			color:inherit !important;
+			
+			.has-tip {
+				color:inherit !important;
+			}
+		}
+		
+		> div {
+			@include grid-column(12, $collapse:true);
+			padding-left:rem-calc(24);
+			font-size:rem-calc(13);
+			line-height:1.3;
+		}
+	}
+	
+	.carrental-selection-pane {
+		border-color:#ddd;
+		border-style:solid;
+		border-width:1px 0;
+		padding:emCalc(10px);
+		background-color:#fff;
+	}
+
+	
+	article {
+		@include grid-row;
+		position:relative;
+		padding:emCalc(5px) 0;
+		margin:-1px 0;
+		border:1px solid #ddd;
+		background-color:$row-color;
+		
+		* { text-shadow:1px 1px 0 #fff }
+		
+		&:hover {
+			background-color:$hover-row-color !important;
+			transition:background-color 300ms ease-out 0s;
+		}
+		
+		&.current {
+			background-color:#fff !important;
+		}
+		
+		.carrental-check {
+			@include grid-column(1);
+			padding:0 !important;
+			
+			label {
+				display:table;
+				margin-top:$rem-base / 2;
+				margin-left:-1px;
+				padding:emCalc(5px);
+				border-color:#ddd;
+				border-style: solid solid solid none;
+				border-width:1px;
+				border-radius:0 $global-radius $global-radius 0;
+				background-color:#fff;
+				
+				input[type="checkbox"] { margin:5px 0; }
+				select { margin:5px 0; }
+			}
+		}
+		
+		> figure {
+			display:none;
+			
+			img { margin-top:emCalc(9px); }
+		}
+		
+		h3 {
+			font-size:$h5-font-size;
+			font-weight:200;
+			
+			+h6 { margin-top:-10px; }
+		}
+		
+		h6 { font-size:rem-calc(13); }
+		
+		.carrental-info {
+			@include grid-column(9);
+			h6 {
+				span {
+/*					position:absolute;
+					display:inline-block;
+					background-color:#999;
+					padding:1px 5px;
+					margin-top:emCalc(4px);
+					margin-left:emCalc(5px);
+					border-radius:$global-rounded;
+					text-align:center;
+					text-shadow:none;
+					font-weight:bold;
+					line-height:$rem-base;
+					color:#fff;*/
+				}
+			}
+			
+			.carrental-detail-button {
+				@include linkme();
+				display:block;
+				margin-bottom:emCalc(5px);
+			}
+			
+			.carrental-detail {
+				display:none;
+				padding:emCalc(5px) 0 $rem-base;
+				
+				figure {
+					@include grid-column(5);
+					display:inline-block;
+				}
+				
+				ul {
+					@include grid-column(6);
+					margin-top:emCalc(5px);
+					list-style-position:outside;
+					padding-left:$rem-base;
+					li {
+						font-size:12rem;
+						font-size:12px;
+						line-height:1.2;
+					}
+				}
+				
+				&.show { display:table !important; }
+			}
+		}
+		.carrental-info2 {
+			@include grid-column(2);
+			text-align:right;
+			
+			h3,
+			h6 { white-space:nowrap; }
+		}
+		
+		&.current {
+			border: 1px solid $selected-color;
+			z-index:1;
+
+			.carrental-check {
+				label {
+					border-color:$selected-color;
+					background-color:#fff;
+				}
+			}			
+		}
+		
+		&:nth-of-type(2n) {
+			background-color:$alt-row-color;
+		}
+		
+		&:first-child {
+			border-radius:$global-radius $global-radius 0 0;
+		}
+		
+		&:last-child {
+			border-radius:0 0 $global-radius $global-radius;
+		}
+	}
+		
+	&.full {
+		article {
+			
+			> figure {
+				display:inline;
+				@include grid-column(3);
+			}
+			
+			.carrental-info {
+				@include grid-column(6);
+				
+				.carrental-detail-button {
+					display:none;
+				}
+				
+				.carrental-detail {
+					display:table !important;
+					
+					figure { display:none; }
+					
+					ul {
+						@include grid-column(12);
+						margin-top:0;
+						padding-left:$rem-base !important;
+					}
+				}
+			}
+			.carrental-info2 {
+				@include grid-column(2);
+			}
+			
+			&.current {
+				border: 1px solid $selected-color;
+	
+				.carrental-check {
+					label { border-color:$selected-color; }
+				}			
+			}
+		}
+	}
+	
+	@media #{$screen} {
+		
+		article {
+			h3 { font-size:90% }
+			h6 { font-size:80% }
+		}
+		
+		&.full {
+			
+			article {
+				
+				> figure {
+					display:none;
+				}
+				
+				.carrental-info {
+					@include grid-column(9);
+					
+					.carrental-detail-button {
+						display:block;
+					}
+					
+					.carrental-detail {
+						display:none !important;
+						
+						figure {
+							@include grid-column(5);
+							display:inline-block;
+						}
+						
+						ul {
+							@include grid-column(7);
+							margin-top:emCalc(10px);
+						}
+					}
+				}
+				.carrental-info2 {
+					@include grid-column(2);
+				}
+			}
+			
+			&.optional {
+							
+				.carrental-check {@include grid-column(2); }
+				.carrental-info {
+					@include grid-column(8);
+					.carrental-detail {
+						&.show { display:table !important;
+						}
+					}
+				 }
+				.carrental-info2 { @include grid-column(2); }
+			}
+		}
+		
+		&.optional {
+			
+			.carrental-check {
+				@include grid-column(2);
+				label {
+					display:table;
+					margin-top:$rem-base / 2;
+					margin-left:-1px;
+					padding:emCalc(5px) emCalc(10px) emCalc(5px) 0;
+				}
+			}
+			.carrental-info { @include grid-column(7); }
+			.carrental-info2 { @include grid-column(3); }
+		}
+	}
+	
+	@media #{$small} {
+		article {
+			h3 { font-size:100%; }
+			h6 { font-size:90%; }
+		}
+	}
+	
+	
+	@media #{$medium} {
+		article {
+			h3 { font-size:$h5-font-size; }
+			h6 { font-size:rem-calc(13); }
+		}
+		
+		&.full {
+			
+			article {
+				
+				> figure {
+					display:inline;
+					@include grid-column(3);
+				}
+				
+				.carrental-info {
+					@include grid-column(6);
+					
+					.carrental-detail-button {
+						display:none;
+					}
+					
+					.carrental-detail {
+						display:table !important;
+						
+						figure { display:none; }
+						
+						ul {
+							@include grid-column(12);
+							margin-top:0;
+						}
+					}
+				}
+				.carrental-info2 { }
+			}
+			
+			&.optional {
+				
+				> figure {
+					@include grid-column(2);
+				}
+			
+				.carrental-check {@include grid-column(1); }
+				.carrental-info { @include grid-column(6); }
+				.carrental-info2 { @include grid-column(2); }
+			}
+		}
+	}
+	
+	select {
+		margin-bottom:0;
+	}
+}

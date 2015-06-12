@@ -1,0 +1,53 @@
+//
+// Variabelen
+//
+
+//Corporate Colors
+$red-color:#c4281a;
+$blue-color:#00619e;
+//$blue-color-hover:#EEF7FF; //wordt vervangen door $highlight-color.
+
+$bus-color:#0081c6;
+$auto-color:#a7b320;
+$vlieg-color:#f6971f;
+$ver-color:#ed332b;
+$steden-color:#7772af;
+
+$warning-color:#FFE135;
+
+//Interaction Colors
+$highlight-color:lighten($primary-color, 65%);
+$selected-color:lighten($primary-color, 50%);
+
+$discount-color:gold;
+$info-positive-color:forestgreen;
+$info-negative-color:red;
+
+$notify-neutral-color:#dff3ff;
+$notify-oke-color:#f1ffdf;
+$notify-warning-color:#ffffdf;
+$notify-error-color:#FFDFDF;
+
+$shadow-edge-size:3px;
+$shadow-edge-color:#333;
+
+$row-color:#fafafa;
+$alt-row-color:#f6f6f6;
+$hover-row-color:#f2f2f2;
+
+$body-font-color-light:lighten($body-font-color, 40%);
+
+$pluim-geel:#f6d143;
+$pluim-rood:#fc0d1b;
+$pluim-groen:#6ac724;
+$pluim-blauw:#126fbd;
+$pluim-oranje:#fd8427;
+$pluim-paars:#71539c;
+$pluim-roze:#ee87ad;
+$pluim-turquoise:#16aeaa;
+$pluim-brons:#a9691a;
+$pluim-zilver:#909496;
+$pluim-goud:#dac038;
+
+
+$base-font-size: 10px;

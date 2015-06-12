@@ -1,0 +1,71 @@
+/*
+	In Sitecore is het mogelijk om aparte classen toe te passen op de content. 
+*/
+
+/*	
+	USP's uitlichten
+	-----------------------------------------------------------------------------
+*/
+
+.Highlight,
+.Highlight-large {
+    //border-radius: $global-radius;
+	background-color:#fff;
+	border-width:1px 0;
+	border-style:solid;
+	border-color:#ddd;
+    list-style: none outside none;
+    margin:rem-calc(32) auto rem-calc(32);
+    position: relative;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+.Highlight > li:first-child,
+.Highlight-large > li:first-child {
+	font-size: $h5-font-size;
+	line-height:1.2;
+	font-family: 'Nunito', sans-serif;
+	//text-transform:uppercase;
+	letter-spacing:2px;
+	color:scale-color($primary-color, $lightness:10%);
+	background:none;
+	padding: rem-calc(0 0 8 0);
+	&:before {
+		content:"";
+		margin:0;
+		width:inherit;
+	}
+}
+.Highlight > li,
+.Highlight-large > li {
+	padding: rem-calc(0 0 8 30);
+	font-size:14px;
+	line-height: 1.2;
+	color:#333;
+	
+	&:before {
+		@include fontello('\e8ca', $icon-color: $success-color);
+		margin:rem-calc(0 16 0 -30);
+	}
+}
+
+@media #{$small-up} {
+	.Highlight {
+		width:100%;
+		//float: right;
+		display:block;
+		padding: rem-calc(16);
+	}
+	.Highlight-large {
+		width:100%;
+		padding:rem-calc(15 28 15 60);
+		font-size:0.85em;
+		background-color:#C6DAF0;
+		color: #333333;
+	}
+}
+
+@media #{$medium-up} {
+	.Highlight {
+		width:75%;
+	}
+}

@@ -1,0 +1,483 @@
+/* We use this media query to add styles to any device that supports media queries */
+
+table {
+	&.default {
+		//font-family:Arial, Helvetica, sans-serif;
+		color:#666;
+		font-size:13px;
+		text-shadow: 1px 1px 0px #fff;
+		// background:#eaebec;
+		width:100%;
+		//margin:20px;
+		border-spacing:0;
+		border-collapse:collapse;
+		border:1px solid $global-border-color;
+		border-radius:$global-radius;
+		
+		&.focus {
+			-moz-box-shadow: 0 1px 2px #d1d1d1;
+			-webkit-box-shadow: 0 1px 2px #d1d1d1;
+			box-shadow: 0 1px 2px #d1d1d1;
+		}
+		
+		th {
+			padding:$rem-base / 2;
+			border-top:1px solid $alt-row-color;
+			border-bottom:1px solid darken($global-border-color, 15%);
+			border-radius:$global-radius;
+			
+			//background:$highlight-color url(../siteimages/gasamen/header/header-sprite.png) 0 -361px repeat-x;
+			background: $table-head-bg;			
+			text-align:left;
+			
+			&:first-child {
+				text-align: left;
+				width:25%;
+			}
+			
+		}
+		
+		tr {
+			text-align: center;
+			padding-left:20px;
+			
+			td {
+				padding:$rem-base $rem-base / 2;
+				border-top: 1px solid #ffffff;
+				border-bottom:1px solid #e0e0e0;
+				border-left: 1px solid #e0e0e0;
+				
+				background: $alt-row-color;				
+				text-align: left;
+				
+				&:first-child{
+					text-align: left;
+					//padding-left:20px;
+					border-left: 0;
+					vertical-align:top;
+					width:25%;
+				}
+			}
+			
+			&:first-child th:first-child{
+				border-top-left-radius:$global-radius;
+			}
+			
+			&:first-child th:last-child{
+				border-top-right-radius:$global-radius;
+			}
+			
+			&:nth-of-type(2n) {
+				td {
+					background: #f6f6f6;
+				}
+			}
+			
+			&:last-child td{
+				border-bottom:0;
+				
+				&:first-child{
+					border-bottom-left-radius:$global-radius;
+				}
+				
+				:last-child{
+				}
+			}
+			
+			&:hover td{
+				background: #f2f2f2;
+			}
+		}		
+		
+		a {
+			&:link {
+				color: #666;
+				font-weight: bold;
+				text-decoration:none;
+			}
+			
+			&:visited {
+				color: #999999;
+				font-weight:bold;
+				text-decoration:none;
+			}
+			
+			&:active,
+			&:hover {
+				color: #bd5a35;
+				text-decoration:underline;
+			}
+		}
+		
+	}
+}
+
+@media #{$screen} {
+
+	table {
+		thead {
+			border-bottom: 2px solid #444;
+			
+			th {
+				vertical-align:bottom;
+
+				&.price { text-align:right; }
+			}
+			
+			tr {
+				th,
+				td {
+				 
+				}
+				
+				/*@media #{$small} {
+					th, td { font-size: $table-head-font-size }
+				}*/
+				@media #{$medium} {
+					th, td { 
+						
+					}
+				}
+				/*@media #{$large} {
+					th, td { font-size: $table-head-font-size }
+				}*/
+			}
+			
+		}
+		
+		tbody {
+			td {
+				button,
+				input,
+				select {
+					margin:0 !important;
+				}
+				
+				&.price { text-align:right; }
+			}
+			
+			th,
+			td {
+			
+			}
+		}
+		
+		&.travel-checker {
+			width:100%;
+			tbody {
+				th {
+					text-align:left;
+					vertical-align:top;
+				}
+			}
+		}
+		
+		/*----- Accommodation -----*/
+		&.accommodation {
+			width:100%;
+			border-spacing:0;
+			border-collapse:collapse;
+			
+			thead {
+				th {
+					&.first {
+						width:45px;
+					}
+				}
+			}
+		}
+		/*----- End Accommodation -----*/
+		
+		/*----- Trains -----*/
+		&.train {
+			border-spacing:0;
+			border-collapse:collapse;
+			width:100%;
+			select { margin-bottom:0 !important; }
+			
+			thead {
+				th {
+					&.first {
+						width:45px;
+					}
+				}
+			}
+			
+			tbody {
+				tr {
+					&.activeDetails {
+						background-color:scale-color($selected-color, $lightness:30%);
+						border-bottom:1px double $global-border-color;
+						
+						.data-label{
+							display:inline-block;
+							float:left;
+							font-weight:bold;
+							width:70%;
+							color:$body-font-color;
+							
+							&:first-child { width:30%; }
+							
+							.data {
+								display:block;
+								font-weight:normal;
+								label {
+									font-weight:normal;
+									input { margin-right:8px !important }
+								}
+							}
+						}
+					}
+					
+					&.active td,
+					&.selected td {
+						border-top:1px double $global-border-color;
+						border-bottom: 0;
+						text-shadow:none;
+						font-weight:bold;
+						background-color:$selected-color;
+						color:#000;
+					}
+					
+					td {
+						color:$primary-color;
+						@media #{$screen} { &.logo img {width:100%;} }
+						@media #{$small} { &.logo img {display:none;} }
+						@media #{$medium} { &.logo img {width:100%;} }
+						@media #{$large} { &.logo img {width:100%;} }
+					}
+				}
+			}
+			
+			
+		}
+		/*----- End Trains -----*/
+		
+		/*----- Flight -----*/
+		
+		/*Afwijkende annuleringsvoorwaarden*/
+		.var-condition {
+			color:#999;
+			border-bottom:1px dotted #999;
+			font-size: rem-calc(11);
+			text-decoration: none;
+			
+			&:hover,
+			&:active {
+				cursor: help;
+				color: #666;
+			}
+		}
+		
+		&.flight {
+			width:100%;
+			table-layout:fixed;
+			border-spacing:0;
+			border-collapse:collapse;
+			colgroup {
+				
+				&.selection {
+					border-right:1px solid #ddd;
+					text-align:center;
+				}
+			}
+						
+			th,
+			td {
+				&.selection {
+					width:emCalc(26px);
+				}
+				&.route {
+					width:45%;
+				}
+			}
+			
+			tbody {
+				> tr {
+					/*&:hover {
+						@include hover-fx;
+					}*/
+					
+					&.selected {
+						//background-color:$highlight-color;
+						
+						/*&:hover {
+							background:$highlight-color !important;
+							cursor:default !important;
+						}*/
+						
+						th {
+							background-color:$selected-color;
+						}
+						
+						> td {
+							border:1px solid $selected-color;
+						}
+						
+						td {
+							text-shadow:1px 1px 0 #fff;
+							
+							table {
+								//background:rgba($selected-color, 0.6);
+							}
+						}
+					}
+					
+					&.disabled {
+						td {
+							table tr td {opacity:0.2;}
+						}
+					}
+					
+					th { vertical-align:top; }
+							
+					td {
+						vertical-align:top;
+						overflow:visible;
+						padding:0;
+						@include airline-logos;
+						
+						table {
+							width:100%;
+							table-layout:fixed;
+							border:none;
+							margin:0;
+							background:none;
+							
+							tr,
+							td {
+								background: none !important;
+							}
+							
+							th,
+							td { padding:emCalc(5px) emCalc(5px); }
+							
+							tr {
+								&.context-info {
+									td {
+										font-size:11px;
+										white-space:nowrap;
+									}
+								}
+								
+								td {
+									.icon-attention-alt {
+										color:red;
+										font-size:15px;
+										font-size:1.5rem;
+										&:before {
+											margin:0;
+										}
+									}
+									&.price {
+										> span { background-color:white; }
+									}
+								}
+							}
+							
+						}
+					}
+					
+				}
+			}//END tbody
+		}
+		/*----- End Flight -----*/
+		&.carrental {
+			width:100%;
+			border-spacing:0;
+			border-collapse:collapse;
+	
+			.data { border-bottom: 0; }
+
+			tbody {
+				& > .data{
+					background:white !important;
+					&:hover { background:$highlight-color; }
+				}
+			}
+
+			.hover {
+				background: whitesmoke;
+				cursor: pointer;
+			}
+
+			.note {
+				color: #666;
+				display: block;
+			}
+
+			.extra {
+				padding: 0;
+				border-bottom: 1px solid #ddd;
+				background-color:#fff !important;
+				
+				&:hover {
+					background: inherit;
+				}
+				
+				.car_content {
+					@include grid-row();
+					display: none;
+					
+					.car_text {
+						@include grid-column(6);
+					}
+					
+					.car-image {
+						@include grid-column(6);
+					
+						img {
+							float: left;
+							margin-right: 1.25em;
+							border: 1px solid #ccc;
+						}
+						
+						.letter {
+							color: #fff;
+							background: #333;
+							position: absolute;
+							top:0;
+							left: $rem-base / 2;
+							display: inline-block;
+							padding: emCalc(5px);
+						}
+					}
+					
+				}
+				
+			}
+
+			.active,
+			.active:hover {
+				background:$selected-color;
+			}
+		}
+		
+		&.ferry {
+			width:100%;
+			border-spacing:0;
+			border-collapse:collapse;
+			
+			select {
+				width:auto;
+			}
+			
+			thead {
+				th {
+					&.first {
+						width:45px;
+					}
+				}
+			}
+			
+		}
+	}
+}
+
+
+@media #{$small} { }
+@media #{$medium} { }
+@media #{$large} { }
+@media #{$landscape} { }
+@media #{$portrait} { }
+.touch .your-element {}

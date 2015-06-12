@@ -1,0 +1,944 @@
+// Make sure the charset is set appropriately
+@charset "UTF-8";
+
+// Global Foundation Settings
+@import "foundation/settings";
+//@import "compass";
+//@import "compass/css3/flexbox";
+
+// You can import only specific elements by adjusting the import below
+@import "foundation";
+@import "customgrids";
+@import "elements";
+@import "header";
+@import "footer";
+
+body {
+	background-image:url(http://media.dejongintra.nl/styles/siteimages/themes/theme-DJIV.jpg);
+}
+body > .row {
+	background: #fff;
+	
+	&.first {
+		position:relative;
+		z-index:10;
+		padding-top: rem-calc(20);
+	}
+}
+
+h1 {
+	font-size:$h2-font-size;
+	color:scale-color($primary-color, $lightness:10%);
+	line-height:100%;
+	
+	& + p {
+		margin-top: rem-calc(-5);
+		margin-bottom: $rem-base;
+		font-family: 'Nunito', sans-serif;
+		color:scale-color($body-font-color, $lightness:20%);
+	}
+}
+
+.search-component {
+	padding:0;
+	border-radius: $global-radius;
+	background: scale-color($primary-color, $lightness:30%);
+	height: rem-calc(290);
+	
+	> .inner {
+		background: none;
+	}
+	
+	dl {
+		margin-bottom: rem-calc(20);
+		
+		dt {
+			margin-top: $rem-base;
+			color: #fff;
+		}
+		
+		dd { position:relative; }
+	}
+}
+
+.toplist-component {
+	@media #{$large-up} {
+		.star-rating li:before,
+		.zoover-rating,
+		.zoover-rating:before { color:#fff !important; }
+		
+		.inner > ol > li {
+			height:rem-calc(100);
+			
+			> div {
+				width:100%;
+				position:absolute;
+				top: rem-calc(42);
+				padding:0 $rem-base/2;
+				text-shadow:0 1px 2px #000;
+				
+				h4, p, a { color:#fff !important; }
+				
+				h4{ font-size:rem-calc(14); line-height:1.2; }
+				p, span { font-size:rem-calc(12); line-height:1.1; }
+				h4 + p {margin-top:5px;}
+				span + p {margin-top:-5px;}
+			}
+			
+			figure {
+				width:100%;
+				position:relative;
+				height:rem-calc(100);
+				opacity:1;
+				@include single-transition;
+				&:before {
+					content:"";
+					opacity:1;
+					
+					background:url(../images/gradient-contrast-text.png) repeat-x bottom;
+					position:absolute;
+					bottom:0;
+					left:0;
+					height:100%;
+					width:100%;
+				}
+			}
+			
+			&:hover,
+			&:focus {
+				.star-rating li:before,
+				.zoover-rating,
+				.zoover-rating:before { color:inherit !important; }
+				
+				> div {
+					text-shadow: none;
+					h4, p, a { color:#333 !important; }
+				}
+				figure {
+					opacity:0.2;
+					&:before {	opacity:0;	}
+				}
+			}
+		}
+	}
+}
+
+/*	--------------------------
+	Mirabeau
+	--------------------------
+*/
+
+.quick-search
+{
+	position: relative;
+	margin-bottom: 30px;
+	padding: 1px 0;
+	border-top: 1px solid #0054a4;
+	border-bottom: 1px solid #0054a4;
+	
+	h2 {
+		position: absolute;
+		left: 0;
+		top: 0;
+		font-size: $h3-font-size;
+		color:scale-color($primary-color, $lightness:20%);
+	}
+	
+	a {
+		overflow: visible;
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		position:absolute;
+	}
+	
+	.fields	{
+		margin: 0;
+		padding-top: 44px;
+		padding-bottom: 60px;
+		border-top: 1px solid #0054a4;
+		border-bottom: 1px solid #0054a4;
+		
+		.field {
+			&.select {
+				/*height: 60px;
+				
+				label {
+					line-height: 20px;
+				}
+				
+				select {
+					width: 100%;
+				}*/
+			}
+		}		
+	}
+	
+	.results {
+		position: absolute;
+		left: 0;
+		bottom: 0px;
+		margin-bottom: 22px;
+		color: $body-font-color-light;
+		line-height: 16px;
+		line-height: 1.6rem;
+		width: 70%;
+		font-size:13px;
+		font-size:1.3rem;
+		
+		.counter {
+			color: #0064a9;
+			font-size: 16px;
+			font-size: 1.6rem;
+			
+			.number {
+				overflow: hidden;
+				position: relative;
+				float: left;
+				margin-right: 1px;
+				color: #0064a9;
+				background: url('http://media.dejongintra.nl/styles/siteimages/components/quick-search/number.png') no-repeat left top;
+				font-size: 30px;
+				line-height: 30px;
+				text-align: center;
+				width: 20px;
+				height: 30px;
+				
+				.frame {
+					position: absolute;
+					z-index: 30;
+					left: 0;
+					top: 0;
+					background: url('http://media.dejongintra.nl/styles/siteimages/components/quick-search/number.png') no-repeat right top;
+					width: 20px;
+					height: 30px;
+				}
+				
+				.old-top {
+					overflow: hidden;
+					display: block;
+					position: absolute;
+					z-index: 10;
+					left: 0;
+					bottom: 15px;
+					background: url('http://media.dejongintra.nl/styles/siteimages/components/quick-search/number.png') no-repeat left top;
+					font-size: 30px;
+					line-height: 30px;
+					width: 20px;
+					height: 15px;
+				}
+				
+				.old-bottom {
+					overflow: hidden;
+					display: block;
+					position: absolute;
+					z-index: 10;
+					left: 0;
+					top: 15px;
+					background: url('http://media.dejongintra.nl/styles/siteimages/components/quick-search/number.png') no-repeat left bottom;
+					font-size: 30px;
+					line-height: 0px;
+					width: 20px;
+					height: 15px;
+				}
+				
+				.new-bottom {
+					overflow: hidden;
+					display: block;
+					position: absolute;
+					z-index: 20;
+					left: 0;
+					top: 15px;
+					background: url('http://media.dejongintra.nl/styles/siteimages/components/quick-search/number.png') no-repeat left bottom;
+					font-size: 30px;
+					line-height: 0px;
+					width: 20px;
+					height: 0;
+				}
+				
+				&.first-child {
+					margin-right: 5px;
+				}
+			}
+		}
+	}
+}
+
+/* Results counter */
+.homepage {
+	.quick-search {
+		.results {
+			padding-left: 100px;
+			width: 70%;
+			
+			.counter {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 90px;
+			}
+		}
+	}
+}
+
+/* Promotion banner */
+.promoted {
+	overflow: hidden;
+	position: relative;
+	margin-bottom: 20px;
+	background-repeat: no-repeat;
+	background-position: left top;
+	height: 290px;
+	
+	a {
+		position: relative;
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+	
+	h2, h6, p {
+		color: #fff;
+		text-decoration: none;
+	}
+	
+	h2 {
+		padding-top: rem-calc(10);
+		font-size: $h4-font-size;
+		line-height: 1;
+	}
+	
+	h6 {
+		margin-left: 8px;
+		padding-top: 10px;
+		color: #333;
+		font-size: 13px;
+		line-height: 25px;
+		font-weight: normal;
+	}
+	
+	p {
+		padding-bottom: 15px;
+		clear: left;
+		font-size: 16px;
+		line-height: 20px;
+	}
+	
+	/**
+	 *  @part
+	 *  Slides
+	 */
+	 
+	.slides {
+		margin-bottom: 0;
+		position: relative;
+		width: 100%;
+		height: 100%;
+		list-style:none;
+		
+		.slide {
+			display: none;
+			position: absolute;
+			left: 0;
+			top: 0;
+			padding-left: 0;
+			width: 100%;
+			height: 100%;
+			
+			&:before {
+				display: none;
+			}
+			
+			&:first-child {
+				display: block;
+			}
+		}
+	}
+	
+	/**
+	 *  @part
+	 *  Slide navigation
+	 */
+
+	.navigation	{
+		position: absolute;
+		z-index: 30;
+		right: 10px;
+		top: 10px;
+		width: 20px;
+		
+		.slide-button {
+			cursor: pointer;
+			display: block;
+			margin-bottom: 1px;
+			padding-left: 0;
+			background: url('http://media.dejongintra.nl/styles/siteimages/components/promoted/navigation.png') no-repeat left bottom;
+			width: 20px;
+			height: 20px;
+			
+			&:before {
+				display: none;
+			}
+			
+			&.current {
+				background-position: left top;
+			}
+		}
+	}
+	
+	/**
+	 *  @part
+	 *  Inset
+	 */
+	 
+	.inset {
+		position: absolute;
+		left: 15px;
+		bottom: 15px;
+		padding-right: 15px;
+		padding-left: 15px;
+		background: #007fc8;
+		height:75px;
+		max-width:90%;
+		
+		&:after {
+			content: '';
+			position: absolute;
+			right: -20px;
+			top: 0;
+			background: url('http://media.dejongintra.nl/styles/siteimages/components/promoted/inset-arrow.png') no-repeat right top;
+			width: 20px;
+			height: 75px;
+		}
+	}
+	
+	.slide {
+		
+		&.busreizen {
+			
+			.inset {
+				background: $bus-color;
+				
+				&:after {
+					background-position: -80px 0;
+				}
+			}
+		}
+	}
+	
+	&.busreizen {
+		
+		.inset {
+			background: $bus-color;
+			
+			&:after {
+				background-position: -80px 0;
+			}
+		}
+	}
+	
+	&.autoreizen {
+		.inset {
+			background: $auto-color;
+			
+			&:after {
+				background-position: -60px -75px;
+			}
+		}
+	}
+	
+	&.vliegreizen {
+		.inset {
+			background: $vlieg-color;
+			
+			&:after {
+				background-position: -40px -150px;
+			}
+		}
+	}
+	
+	&.verre-reizen {
+		.inset {
+			background: $ver-color;
+			
+			&:after {
+				background-position: -20px -225px;
+			}
+		}
+	}
+	
+	&.stedentrips {
+		.inset {
+			background: $steden-color;
+			
+			&:after {
+				background-position: 0 -300px;
+			}
+		}
+	}
+	
+	@media #{$small-up} {
+
+		h2 {
+			font-size: $h5-font-size;
+		}
+		p {
+			font-size: 13px;
+		}
+	}
+	
+	@media #{$medium-up} {
+
+		h2 {
+			font-size: $h5-font-size;
+		}
+		p {
+			font-size: 14px;
+		}
+	}
+	
+	@media #{$large-up} {
+
+		h2 {
+			font-size: $h4-font-size;
+		}
+		p {
+			font-size: 16px;
+		}
+	}
+}
+
+/* Top Tasks / Primary Themes */
+.main-themes {
+	> div {
+		
+		.main-themes-list {
+			@include block-grid(3);
+			margin-bottom:$rem-base;
+			
+			> li {
+				position:relative;
+				.inner { padding:rem-calc(5); }
+				
+				.remark {
+					$ribbon-color:scale-color($red-color, $lightness:5%);
+					$ribbon-arrow:scale-color($red-color, $lightness:-15%);
+					
+					position:absolute;
+					left:-10px;
+					top:45px;
+					border-radius:0 $global-rounded $global-rounded 0;
+					padding:rem-calc(7.5 15);
+					box-shadow:1px -1px 1px -1px #000, 2px 2px 5px #666;
+					background:$ribbon-color;
+					font-family: 'Shadows Into Light Two', 'cursive', Georgia, serif;
+					line-height:1;
+					color: #fff;
+					text-shadow:0px -1px darken($red-color, 10%);
+					letter-spacing:1px;
+					
+					&:before {
+						content:"";
+						@include arrow(bottom-right, $ribbon-arrow, 10px);
+						position:absolute;
+						left:0;
+						top:-10px;
+					}
+				}
+				
+				> a {
+					display:block;
+					position:relative;
+					z-index:2;
+					background-color:#fff;
+					border:1px solid #ddd;
+					border-radius:$global-radius;
+					
+					h2 {
+						color: inherit;
+						font-size: $h5-font-size;
+						overflow:hidden;
+						white-space:nowrap;
+						text-overflow: ellipsis;
+					}
+					
+					figure {
+					}
+					
+					&:hover {
+						@include hover-fx;
+					}
+				}
+				
+				.to-offer {
+					position:relative;
+					z-index:1;
+					margin-top:-7.5px;
+					padding-top:5px;
+					background-color:#eee;
+					border-radius:0 0 2.1px 2.1px;
+					
+					a {
+						&:before {
+							@include fontello('\e817')
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	@media #{$small-up} {
+		> div {
+			.main-themes-list {
+				@include block-grid(1);
+			}
+		}
+	}
+	
+	@media #{$medium-up} {
+		> div {
+			.main-themes-list {
+				@include block-grid(3);
+			}
+		}
+	}
+}
+
+.top-tasks
+{
+	//margin-left: -15px;
+	padding-left: -15px;
+	
+	li > a {display:block;}
+	
+	.items {
+	
+		.item {
+			vertical-align: top;
+			display: inline-block;
+			*display: inline;
+			*zoom: 1;
+						
+			h2 {
+				/*margin-bottom: 6px;
+				font-size: 22px;
+				font-size: 2.2rem;
+				font-weight: normal;
+				text-decoration: none;
+				color:$primary-color;*/
+			}
+			
+			h3 {
+				/*margin-bottom: 4px;
+				color: #0065a4;
+				font-size: 16px;
+				font-size: 1.6rem;
+				font-weight: normal;
+				text-decoration: none;*/
+			}
+			
+			p {
+				img { max-height: 120px; }
+				
+				a {
+					&.button { @extend .cta1-button;	}
+				}
+			}
+			
+			&:before { display: none; }
+			
+			&.sub-theme {
+				
+				ul {
+					margin-bottom: 15px;
+					list-style: outside disc;
+				}
+			}
+			
+			/** Offers */
+			
+			&.theme {
+				.offers {
+					.offer {
+						padding: 0;
+						border-top: 1px solid #0065a4;
+						
+						h3 {
+							line-height: 39px;
+						}
+						
+						p {
+							overflow: hidden;
+							margin: -2px 0 15px;
+							text-overflow: ellipsis;
+							white-space: nowrap;
+							text-decoration: none;
+						}
+					}
+				}
+			}
+			
+			&.theme p,
+			&.sub-theme p {
+				overflow: visible;
+				white-space: normal;
+			}
+			
+			&.accommodations {
+				
+				
+								
+				.offers {
+					
+					.offer {
+						padding-top: 10px;
+						border-top: 1px solid #0065a4;
+						position:relative;
+						
+						h3 {
+							margin-bottom: 0;
+							display:inline-block;
+							width:75%;
+						}
+						
+						p {
+							&.rating {
+								position: absolute;
+								right: 0;
+								top: 4px;
+								color: #fca805;
+								font-size: 22px;
+								font-size: 2.2rem;
+								font-weight: bold;
+							}
+						}
+					}
+				}
+			}
+			
+			.offers	{
+				margin: -1px 0 8px;
+				list-style:none;
+				
+				.offer {
+					padding-top: 14px;
+					padding-left: 0;
+					border-top: 1px solid #0065a4;
+					
+					a {
+						&:hover { @include hover-fx; }
+					}
+					
+					p {
+						color:#333;
+						white-space:nowrap;
+						overflow:hidden;
+						text-overflow:ellipsis;
+					}
+					
+					&:before { display: none; }
+					
+					&:first-child {
+						padding-top: 0;
+						border-top: 0;
+					}
+				}//offer
+			}//offers
+			
+		}//item
+	}//items
+}
+
+/* Top 5 */
+
+.top-five {
+	padding-left:1em!important;
+	
+	.items {
+		margin:rem-calc(0 0 20);
+		border-top: 1px solid $primary-color;
+		list-style:none;
+		
+		.item, .item * {
+			margin: 0;
+			padding: 0;
+		}
+		
+		.item {
+			position: relative;
+			padding-left: 0;
+			background: url('http://media.dejongintra.nl/styles/siteimages/components/top-five/transportation.png') no-repeat -80px 0;
+			border-bottom: 1px solid $primary-color;
+			
+			&:hover { @include hover-fx; }
+			
+			&:before { display: none; }
+			
+			&.plane { background-position: -80px 0; }
+			&.train { background-position: -60px -40px; }
+			&.bus { background-position: -40px -80px; }
+			&.car { background-position: -20px -120px; }
+			&.boat { background-position: 0 -160px; }
+			
+			a {
+				display: block;
+				padding: 13px 0 20px 33px;
+				text-decoration: none;
+			}
+			
+			h3 {
+				margin-bottom:rem-calc(5);
+				color: $primary-color;
+				font-size: $h5-font-size;
+			}
+			
+			p {
+				font-size:rem-calc(13);
+				color:scale-color($body-font-color, $lightness:20%);
+				line-height:1.3;
+				/*margin-bottom: 0;
+				line-height: 18px;
+				line-height: 1.8rem;
+				color:#333;
+				font-size:13px;
+				font-size:1.3rem;*/
+			}
+			
+			/**Price tag.*/
+			
+			.price-tag {
+				overflow: hidden;
+				position: absolute;
+				right: -9px;
+				bottom: 4px;
+				padding-left: 78px;
+				background: url('http://media.dejongintra.nl/styles/siteimages/components/top-five/price-tag.png') no-repeat left top;
+				width: 0;
+				height: 48px;
+				
+				.price {
+					position: absolute;
+					left: 0;
+					top: 0;
+					color: #333;
+					font-size: 16px;
+					font-size: 1.6rem;
+					line-height: 54px;
+					font-weight: bold;
+					text-align: center;
+					width: 78px;
+					-webkit-transform: rotate(-4deg);
+					-moz-transform: rotate(-4deg);
+					-ms-transform: rotate(-4deg);
+					-o-transform: rotate(-4deg);
+					transform: rotate(-4deg);
+				}
+			}
+			
+			&.offer {
+				.price-tag { background-position: left -48px; }
+			}
+		}
+	}
+}
+
+/* Secondary Themes */
+.more-themes {
+	@include grid-row;
+	padding-top:rem-calc(20);
+	border-top:1px solid #ddd;
+	
+	h2 {
+		color:scale-color($primary-color, $lightness:10%);
+	}
+	
+	>div {
+		@include grid-column(12);
+		.more-themes-list {
+			@include block-grid(7);
+			margin-bottom:$rem-base;
+			overflow:hidden;
+			
+			> li {
+				background:#fff;
+				text-align:center;
+				
+				figure {
+					margin:$rem-base 0;
+					img {
+						@include single-transition;
+						border-radius:2.1;
+						box-shadow:0 0 1px rgba(#000, 0.5);
+						padding: $rem-base/3;
+						background:#fff;
+					}
+				}
+				
+				> p {
+					margin:rem-calc(-7.5 0 0);
+					font-family: 'Nunito', sans-serif;
+					letter-spacing:1px;
+					line-height:1;
+					color:$primary-color;
+				}
+				
+				&:hover,
+				&:focus {
+					cursor: pointer;
+					figure img {
+						box-shadow:0 0 6px rgba($primary-color, 0.8);
+					}
+				}
+			}
+		}
+	}
+	@media #{$small-up} {
+		>div .more-themes-list {
+			@include block-grid(2);
+		}
+		.more-themes-list > li > p {
+			font-size:12px;
+		}
+	}
+	@media #{$large-up} {
+		>div .more-themes-list {
+			@include block-grid(7);
+		}
+		.more-themes-list > li > p {
+			font-size:$rem-base;
+		}
+	}
+}
+
+/* SEO tekst */
+.seo-bar{
+	p, a, h6 {
+		font-size:9px;
+		font-size:0.9rem;
+		color: $body-font-color-light;
+	}
+	a {
+		text-decoration:underline;
+	}
+	.revealMore {
+		text-decoration:underline;
+		cursor:pointer;
+	}
+}
+
+/*------------------------------------*\
+    #DATE PICKER
+\*------------------------------------*/
+
+/**
+ * Variables
+ */
+
+
+.datepicker::-webkit-calendar-picker-indicator {
+    display: none;
+}
+.datepicker[type="date"]::-webkit-input-placeholder{ 
+    visibility: hidden !important;
+}

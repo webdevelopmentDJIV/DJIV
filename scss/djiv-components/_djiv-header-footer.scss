@@ -1,0 +1,613 @@
+// Global Foundation Settings
+
+//
+// Variabelen
+//
+
+//
+// Mixins
+//
+
+//
+// Typo
+//
+
+html {font-size:10px !important;}
+
+body {font-size:$em-base; }
+
+h2.page-title {color: $primary-color;}
+
+p {
+	a {text-decoration:underline;}
+}
+
+p, ul, ol, li, label, textarea, select, span
+{
+	
+	font-size: 13px;
+	font-size: 1.3rem;
+}
+
+h1,
+h2,
+h3 {
+	&.success {
+		color:$info-positive-color;
+	}
+}
+
+.hidden {
+	position: absolute !important;
+	clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+	clip: rect(1px, 1px, 1px, 1px);
+}
+
+//
+// General
+//
+
+/*Header*/
+
+header[role="heading"] {
+	padding-top:1.333em;
+	margin-bottom:1.333em;
+	background:url(../siteimages/bg_body.png) repeat-x;
+	
+	//--------------
+	
+	.global-search {
+		
+		.searchAdvanced {text-align:center;}
+		
+		.live-search {
+			position:absolute;
+			left: 0;
+			top: 33px;
+			z-index:999;
+			@include box-shadow(0,3px,3px,#999);
+					
+			.results {
+				position:relative;
+				width:325px;
+				border:1px solid #999;
+				border-top-width:5px;
+				padding-bottom:0;
+				
+				ul {
+					margin: 0;
+					padding:0;
+					list-style: none;
+					
+					&:before {
+						@include css-triangle(5px, #999, top);
+						position:absolute;
+						top:0;
+						left:49%;
+					}
+					
+					li {
+						padding:10px;
+						border-top:1px solid white;
+						border-bottom:1px solid #ddd;
+						background-color:darken(white, 2%);
+						
+						
+						&:hover {
+							@include hover-fx();						
+						}
+						
+						&.more-results {
+							text-align:center;
+							background-color:darken(white, 5%);
+							padding:5px 0 !important;
+						}
+						
+						&.no-results {
+							background-color:white !important;
+							padding:10px 0 !important;
+														
+							&:hover {
+								background-color:white !important;
+								cursor:default;
+							}
+	
+						}
+						
+						h6 {
+							padding:0 0 0 $em-base;
+							margin:0;
+							white-space:nowrap;
+							overflow:hidden;
+							text-overflow: ellipsis;
+							font-weight:normal;
+						}
+						
+						p {
+							padding:0 0 0 $em-base;
+							margin: 0;
+							white-space:nowrap;
+							overflow:hidden;
+							text-overflow: ellipsis;
+							line-height:1.2;						
+							
+							&.ls-features {
+								line-height:1.6;
+								margin-top:5px;
+								
+								span {
+									
+									float:left;
+									
+									&.zoover {
+										color:#FCA805;
+										font-weight:bold;
+										margin-right:10px;
+									}
+									
+									&.price {
+										float:right;
+										
+										b {
+											color:#000;
+											padding:3px
+										}
+										
+									}
+									
+									
+									&.microIcon_transport {
+										background:url(../siteimages/sprt_micro-icons.png) no-repeat;
+										display:inline-block;
+										position:relative;
+										top:5px;
+										width:12px;
+										height:12px;
+										margin-right:10px;
+										background-position: 0 -992px;
+										
+										&:first-child {
+											margin-left:0;
+										}
+										
+										&.microIcon_bu { background-position:0 -682px; }
+										&.microIcon_vl { background-position:0 -744px; }
+										&.microIcon_fe { background-position:0 -806px; }
+										&.microIcon_tr { background-position:0 -868px; }
+										&.microIcon_au { background-position:0 -930px; }
+									}
+									
+								}
+							}
+							
+							&.ls-arrangement {
+								padding: 0 0 0 15px;
+								margin: 0 0 2px 15px;
+								color: #0080d1;
+								white-space: nowrap;
+								overflow: hidden;
+								text-overflow: ellipsis;
+								line-height: 1.2em;
+								font-size: 0.9em;
+								background: url("../siteimages/components/product-detail/heading-small.png") no-repeat 3px 0px;
+							}
+							
+						}
+						
+						.ls-cat {
+							p {
+								text-align:right;
+								color:$body-font-color-light;
+								white-space:normal;
+								overflow: visible;
+								text-overflow:none;
+								margin-top:-3px;
+								padding:0;
+							}
+							
+							.geoflags {
+								@include flags;
+								float:right;
+								margin-top:0;
+							}
+
+						}
+					}
+				}
+			}
+		}
+		
+		#SearchWait {
+			position: absolute;
+			right: 5px;
+			top: 5px;
+		}
+	}
+	
+	//--------------
+	
+	h6 {
+		
+		&.call-help {
+			margin-top:0;
+			.txt {display:inline-block;}
+			
+			em {
+				@include rotate(45);
+				display: inline-block;
+				left: 2px;
+				position: relative;
+				top: 1px;
+				
+				span {
+					font-size:13px;
+					font-size:1.3rem;
+					padding-right:0.2em;
+				}
+			}
+		}
+	}
+	
+	hr.corporate-redline {
+		border-top:2px $red-color solid;
+		border-bottom:1px white solid;
+		border-left:none;
+		border-right:none;
+		margin:0;
+	}
+	
+	nav.mainMenus > .row {
+		position:relative;
+	}
+	
+	/*Agent logo*/
+	.companyLogo {
+		position: absolute;
+		right: 0;
+		top: -15px;
+		z-index: 999;
+		background-color:white;
+		padding:5px;
+		@include box-shadow(0, 1px, 3px, #999);
+		border-radius:0 0 10px 10px;
+		border-bottom:1px solid #999;
+		border-top:2px solid #C4281A;
+		
+		> img {	max-height: 60px; }
+	}
+}
+
+// Panel (Global Search) & Client Tools
+
+/* Panels */
+.panel {
+	&.global-search {
+		
+		margin-top:$em-base;
+		@include panel(white);
+		@include box-shadow(0px, 0px, 3px, rgba(0,0,0,0.3));
+		@include radius;
+		
+		input, p {
+			margin-bottom:0;
+		}
+	}
+}
+
+.client-tools {
+	margin-top:$em-base;
+	
+	li {
+		list-style:none;
+		color:$body-font-color-light;
+		
+		.delete {
+			display:none;
+			color:#F00;
+			text-decoration:underline;
+			cursor:pointer;
+			font-size: smaller;
+		}
+		
+		&:hover {
+			.delete {
+				display:inline-block;
+			}
+		}
+	}
+	
+	.badge-counter {
+		@include label(2px 5px, $form-label-font-size, lighten($primary-color,5%),1000px);
+		margin-left:0.5em;
+		position:relative;
+	}
+}
+
+.mainMenus ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	border-left: 1px solid darken($primary-color, 10%);
+	border-right: 1px solid lighten($primary-color, 10%);
+	float: left;
+}
+
+.mainMenus ul > li {
+	float: left;
+	position: relative;
+	z-index: 30;
+}
+
+.mainMenus li > a {
+	color: #e1eaef;
+	display: block;
+	padding: 1em;
+	text-decoration: none;
+	text-shadow: 0 0 1px rgba(0,0,0,.75);
+	border-left: 1px solid lighten($primary-color, 10%);
+	border-right: 1px solid darken($primary-color, 10%);
+}
+
+.mainMenus li > a:hover,
+.mainMenus li > a.hover,
+.mainMenus li > a:focus {
+	background-color: darken($primary-color, 5%); text-shadow: none; }
+
+.mainMenus .home span,
+.mainMenus .home:hover span {
+	background: url(../siteimages/legacy/sprt_footer.png) -140px -6px;
+	width: 19px;
+	height: 18px;
+	position: absolute;
+	top: .6875em;
+	left: .5em;
+}
+
+.mainMenus .home.active span { background: url(../siteimages/legacy/sprt_footer.png) -121px -6px; }
+
+.mainMenus .sub > a:after {
+	content: "\25BC";
+	color: #fff;
+	margin-left: .5 * $em-base;
+	font-size: .7em;
+	line-height: 100%;
+}
+
+.mainMenus .active > a,
+.mainMenus .active:hover > a {
+	background: #fff;
+	color: #333;
+	text-shadow: none;
+}
+
+.subMenuWrapper {
+	display: none;
+	position: absolute;
+	left: 0;
+	top: auto;
+	background-color: darken($primary-color, 5%);
+	z-index: 999;
+	padding: 1em;
+	-webkit-box-shadow: 2px 2px 2px 0 rgba(0,0,0,.3);
+	box-shadow: 2px 2px 2px 0 rgba(0,0,0,.3);
+	width: 42em;
+}
+
+.mainMenus li:hover .subMenuWrapper { display: block; }
+
+.subMenuDivider {
+	float: left;
+	border-left: 1px solid $primary-color;
+	min-height: 10em;
+	width: 33%;
+	padding: 0 .9375em;
+}
+
+.subMenuDivider:first-child {
+	border-left: 0;
+	padding-left: .3125em;
+}
+
+.subMenuDivider a {
+	display: block;
+	color: #fff;
+	text-decoration: none;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow: ellipsis;
+}
+
+.subMenuDivider a:hover,
+.subMenuDivider a.active,
+.subMenuDivider a:focus { text-decoration: underline; }
+
+/*Breadcrumb*/
+
+.djiv-crums {
+	@include crumb-container;
+	@include grid-column(12);
+	
+	margin:15px 0 0;
+	$crumb-slash:">";
+	background:white;
+	border:none;
+	
+	li {
+		@include crumbs;
+	
+		a, span {
+			font-size:11px;
+			font-size:1.1rem;
+		}
+	
+		a {
+			text-transform:none;
+			text-decoration:underline;
+			color:$body-font-color-light;
+			
+			&:hover {
+				text-decoration:none;
+			}
+		}
+		
+		&.current {
+			a {
+				text-decoration:none;
+				cursor:default;
+				color:$body-font-color-light;
+			}
+		}
+	}
+}
+
+/*Footer*/
+
+footer {
+	background:darken(#fff, 5%);
+	margin-top:1.333em;
+	box-shadow:0px 1px 5px #ddd inset;
+	
+	h6, li, p {
+		color:#666;
+	}
+	
+	a {
+		text-decoration:underline;
+	}
+	
+	p {
+		line-height:1.3em;
+	}
+	
+	.footer-service {
+		ul {
+			padding-top:0;
+			li {
+				line-height:1.3em;
+				
+				a { display:inline-block; }
+			}
+		}
+		
+		h6 {
+			&.call-help {
+			
+				em {
+					@include rotate(45);
+					display: inline-block;
+					left: -4px;
+					position: relative;
+					top: 1px;
+					
+					span {
+						font-size:13px;
+						font-size:1.3rem;
+					}
+				}
+				
+				i {
+					font-weight:normal;
+					font-style:normal;
+					font-size:13px;
+					font-size:1.3rem;
+				}
+			}
+		}
+	}
+	
+	.footer-service, .footer-social, .footer-trust{
+		padding-top:1em;
+	}
+
+	.footer-social {
+		
+		h6 {margin-top:0;}
+				
+		ul {
+			margin-top:-5px;
+						
+			&.social {
+				li {
+					a {
+						font-size:22px;
+						text-decoration:none;
+					}
+				}
+			}
+		}
+		
+		img {
+			float:left;
+			width:4.666em;
+			margin-right:.5em;
+		}
+
+		a.subscribe {
+			display:block;
+			padding-top:.5 * $em-base;
+		}
+	}
+	
+	.footer-trust {
+		.blue-expo-link{
+			color:#666;
+			cursor:default;
+			text-decoration:none;
+		}
+		ul {
+			&.trustmarks {
+				margin-top:5px;
+				li {
+					background:url(../siteimages/sprt_footer.png) no-repeat;
+					
+					&.payments {
+						background-position:0 0;
+						width:103px;
+					}
+					
+					&.guarentees {
+						background-position:-103px 0;
+						width:100px;
+					}
+					
+					&.insurances {
+						background-position:-203px 0;
+						width:50px;
+					}
+				}
+			}
+			
+			a {
+				display:block;
+				height:18px;
+			}
+		}
+	}
+	
+	.corporate-footer { 
+		background:$body-font-color;
+		margin-top:$em-base;
+		
+		h2 {
+			color:white;
+			font-weight:normal;
+			text-align:right;
+		}
+		
+		a {
+			box-shadow:none;
+			border:none;
+			margin:0;
+			font-size:13px;
+			font-size:1.3rem;
+			font-weight:normal;
+			text-align:right;
+			
+			&.bus {@include button-style($bus-color);}
+			&.auto {@include button-style($auto-color);}
+			&.vlieg {@include button-style($vlieg-color);}
+			&.verre {@include button-style($ver-color);}
+			&.steden {@include button-style($steden-color);}
+		}
+	}
+}

@@ -1,0 +1,2454 @@
+/*Vars*/
+//Corporate Colors
+$red-color: #c4281a;
+$blue-color: #00619e;
+$green-color: #a7b320;
+$orange-color: #f6971f;
+$purple-color: #7772af;
+
+$bus-color:#0081c6;
+$auto-color:$green-color;
+$vlieg-color:$orange-color;
+$ver-color:#ed332b;
+$steden-color:#7772af;
+
+$cta1-color:#f6971f;
+$cta2-color:#0081c6;
+
+//$warning-color:#FFE135;
+
+//Interaction Colors
+$highlight-color:lighten($primary-color, 65%);
+$selected-color:lighten($primary-color, 50%);
+
+$discount-color:gold;
+$info-positive-color:forestgreen;
+$info-negative-color:red;
+
+$notify-neutral-color:#dff3ff;
+$notify-oke-color:#f1ffdf;
+$notify-warning-color:#ffffdf;
+$notify-error-color:#FFDFDF;
+
+$shadow-edge-size:3px;
+$shadow-edge-color:#333;
+
+$row-color:#fafafa;
+$alt-row-color:#f6f6f6;
+$hover-row-color:#f2f2f2;
+$global-border-color: #ddd;
+
+$body-font-color-light:lighten($body-font-color, 40%);
+
+$pluim-geel:#f6d143;
+$pluim-rood:#fc0d1b;
+$pluim-groen:#6ac724;
+$pluim-blauw:#126fbd;
+$pluim-oranje:#fd8427;
+$pluim-paars:#71539c;
+$pluim-roze:#ee87ad;
+$pluim-turquoise:#16aeaa;
+$pluim-brons:#a9691a;
+$pluim-zilver:#909496;
+$pluim-goud:#dac038;
+
+$base-font-size: 10px;
+
+/*superfluous - zaken die hoogstwaarschijnlijk overbodig zijn*/
+$cdn:"http://media.dejongintra.nl/styles"; /*$cdn:"..." live omgeving*/
+$cdnbf:"https://www.dejongintra.nl/media/styles";
+
+@import url(https://fonts.googleapis.com/css?family=Nunito:300,400,700);
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Nunito', sans-serif;
+}
+@import url(https://fonts.googleapis.com/css?family=Shadows+Into+Light+Two);
+
+/*Mixins*/
+
+// ARROWS
+// --------------------------------------------------------
+// $direction: top, left, right, bottom, top-left, top-right, bottom-left, bottom-right
+// $color: hex, rgb or rbga
+// $size: px or em
+// @example
+// .element{ @include arrow(top, #000, 50px);}
+
+@mixin arrow($direction, $color, $size){
+	display: block;
+	height: 0;
+	width: 0;
+	
+	@if $direction == 'top' {
+		border-left: $size solid transparent;
+		border-right: $size solid transparent;
+		border-bottom: $size solid $color;
+	} @else if $direction == 'right' {
+		border-top: $size solid transparent;
+		border-bottom: $size solid transparent;
+		border-left: $size solid $color;
+	} @else if $direction == 'bottom' {
+		border-top: $size solid $color;
+		border-right: $size solid transparent;
+		border-left: $size solid transparent;
+	} @else if $direction == 'left' {
+		border-top: $size solid transparent;
+		border-right: $size solid $color;
+		border-bottom: $size solid transparent;
+	} @else if $direction == 'top-left' {
+		border-top: $size solid $color;
+		border-right: $size solid transparent;	
+	} @else if $direction == 'top-right' {
+		border-top: $size solid $color;
+		border-left: $size solid transparent;
+	} @else if $direction == 'bottom-left' {
+		border-bottom: $size solid $color;
+		border-right: $size solid transparent;	
+	} @else if $direction == 'bottom-right' {
+		border-bottom: $size solid $color;
+		border-left: $size solid transparent;
+	}
+}
+
+// grayscale ex: filter: grayscale(100%);
+// sepia ex: filter: sepia(100%);
+// saturate ex: filter: saturate(0%);
+// hue-rotate ex: filter: hue-rotate(45deg);
+// invert ex: filter: invert(100%);
+// brightness ex: filter: brightness(15%);
+// contrast ex: filter: contrast(200%);
+// blur ex: filter: blur(2px);
+@mixin filter($filter-type,$filter-amount) {
+-webkit-filter: $filter-type+unquote('(#{$filter-amount})');
+-moz-filter: $filter-type+unquote('(#{$filter-amount})');
+-ms-filter: $filter-type+unquote('(#{$filter-amount})');
+-o-filter: $filter-type+unquote('(#{$filter-amount})');
+filter: $filter-type+unquote('(#{$filter-amount})');
+}
+
+//ICON FONTS
+// --------------------------------------------------------
+/*   Font icons van Fontello   */
+@font-face {
+  font-family: 'gasamen-fontello';
+  src: url('../fonts/gasamen-fontello.eot');
+  src: url('../fonts/gasamen-fontello.eot#iefix') format('embedded-opentype'),
+       url('../fonts/gasamen-fontello.woff') format('woff'),
+       url('../fonts/gasamen-fontello.ttf') format('truetype'),
+       url('../fonts/gasamen-fontello.svg#gasamen-fontello') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'gasamen-fontello';
+    src: url('../font/gasamen-fontello.svg?95434903#gasamen-fontello') format('svg');
+  }
+}
+*/
+ 
+[class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: "gasamen-fontello";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+ 
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+ 
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+     
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+ 
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+ 
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+ 
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+ 
+.icon-spin3:before { content: '\e8c3'; } /* '' */
+.icon-cancel-2:before { content: '\e8cb'; } /* '' */
+.icon-search:before { content: '\e81e'; } /* '' */
+.icon-mail:before { content: '\e81f'; } /* '' */
+.icon-mail-alt:before { content: '\e820'; } /* '' */
+.icon-heart:before { content: '\e821'; } /* '' */
+.icon-heart-empty:before { content: '\e822'; } /* '' */
+.icon-star:before { content: '\e823'; } /* '' */
+.icon-star-empty:before { content: '\e824'; } /* '' */
+.icon-star-half:before { content: '\e825'; } /* '' */
+.icon-star-half-alt:before { content: '\e826'; } /* '' */
+.icon-video:before { content: '\e827'; } /* '' */
+.icon-videocam:before { content: '\e828'; } /* '' */
+.icon-picture:before { content: '\e829'; } /* '' */
+.icon-camera:before { content: '\e82a'; } /* '' */
+.icon-ok:before { content: '\e81b'; } /* '' */
+.icon-ok-circled:before { content: '\e81a'; } /* '' */
+.icon-cancel:before { content: '\e818'; } /* '' */
+.icon-cancel-circled:before { content: '\e819'; } /* '' */
+.icon-plus:before { content: '\e800'; } /* '' */
+.icon-plus-circled:before { content: '\e804'; } /* '' */
+.icon-plus-squared:before { content: '\e802'; } /* '' */
+.icon-plus-squared-small:before { content: '\e806'; } /* '' */
+.icon-minus:before { content: '\e801'; } /* '' */
+.icon-minus-circled:before { content: '\e805'; } /* '' */
+.icon-minus-squared:before { content: '\e803'; } /* '' */
+.icon-minus-squared-small:before { content: '\e807'; } /* '' */
+.icon-help:before { content: '\e82c'; } /* '' */
+.icon-help-circled:before { content: '\e808'; } /* '' */
+.icon-info-circled:before { content: '\e809'; } /* '' */
+.icon-info:before { content: '\e82b'; } /* '' */
+.icon-home:before { content: '\e80a'; } /* '' */
+.icon-link-ext:before { content: '\e80b'; } /* '' */
+.icon-attach:before { content: '\e80c'; } /* '' */
+.icon-lock:before { content: '\e80d'; } /* '' */
+.icon-lock-open:before { content: '\e80e'; } /* '' */
+.icon-eye:before { content: '\e80f'; } /* '' */
+.icon-eye-off:before { content: '\e810'; } /* '' */
+.icon-flag:before { content: '\e81c'; } /* '' */
+.icon-flag-empty:before { content: '\e81d'; } /* '' */
+.icon-thumbs-up:before { content: '\e82d'; } /* '' */
+.icon-thumbs-down:before { content: '\e82e'; } /* '' */
+.icon-quote-left:before { content: '\e842'; } /* '' */
+.icon-quote-right:before { content: '\e843'; } /* '' */
+.icon-pencil:before { content: '\e833'; } /* '' */
+.icon-edit:before { content: '\e834'; } /* '' */
+.icon-print:before { content: '\e835'; } /* '' */
+.icon-comment:before { content: '\e836'; } /* '' */
+.icon-chat:before { content: '\e838'; } /* '' */
+.icon-comment-empty:before { content: '\e837'; } /* '' */
+.icon-chat-empty:before { content: '\e839'; } /* '' */
+.icon-attention-alt:before { content: '\e83a'; } /* '' */
+.icon-attention:before { content: '\e83b'; } /* '' */
+.icon-attention-circled:before { content: '\e83c'; } /* '' */
+.icon-location:before { content: '\e83d'; } /* '' */
+.icon-direction:before { content: '\e83e'; } /* '' */
+.icon-trash:before { content: '\e83f'; } /* '' */
+.icon-doc:before { content: '\e840'; } /* '' */
+.icon-docs:before { content: '\e841'; } /* '' */
+.icon-doc-text:before { content: '\e844'; } /* '' */
+.icon-folder-empty:before { content: '\e845'; } /* '' */
+.icon-folder-open-empty:before { content: '\e846'; } /* '' */
+.icon-rss:before { content: '\e847'; } /* '' */
+.icon-rss-squared:before { content: '\e848'; } /* '' */
+.icon-phone:before { content: '\e849'; } /* '' */
+.icon-phone-squared:before { content: '\e8e8'; } /* '' */
+.icon-menu:before { content: '\e84a'; } /* '' */
+.icon-cog:before { content: '\e84b'; } /* '' */
+.icon-cog-alt:before { content: '\e84c'; } /* '' */
+.icon-basket:before { content: '\e84d'; } /* '' */
+.icon-calendar:before { content: '\e84e'; } /* '' */
+.icon-calendar-empty:before { content: '\e84f'; } /* '' */
+.icon-login:before { content: '\e850'; } /* '' */
+.icon-logout:before { content: '\e851'; } /* '' */
+.icon-block:before { content: '\e852'; } /* '' */
+.icon-resize-full:before { content: '\e853'; } /* '' */
+.icon-resize-full-alt:before { content: '\e854'; } /* '' */
+.icon-resize-small:before { content: '\e855'; } /* '' */
+.icon-resize-vertical:before { content: '\e856'; } /* '' */
+.icon-resize-horizontal:before { content: '\e857'; } /* '' */
+.icon-move:before { content: '\e858'; } /* '' */
+.icon-zoom-in:before { content: '\e859'; } /* '' */
+.icon-zoom-out:before { content: '\e85a'; } /* '' */
+.icon-down-dir:before { content: '\e85b'; } /* '' */
+.icon-up-dir:before { content: '\e85c'; } /* '' */
+.icon-left-dir:before { content: '\e85d'; } /* '' */
+.icon-right-dir:before { content: '\e85e'; } /* '' */
+.icon-down-open:before { content: '\e85f'; } /* '' */
+.icon-left-open:before { content: '\e860'; } /* '' */
+.icon-right-open:before { content: '\e861'; } /* '' */
+.icon-up-open:before { content: '\e862'; } /* '' */
+.icon-angle-left:before { content: '\e863'; } /* '' */
+.icon-angle-right:before { content: '\e864'; } /* '' */
+.icon-angle-up:before { content: '\e865'; } /* '' */
+.icon-angle-down:before { content: '\e866'; } /* '' */
+.icon-angle-circled-left:before { content: '\e867'; } /* '' */
+.icon-angle-circled-right:before { content: '\e868'; } /* '' */
+.icon-angle-circled-up:before { content: '\e869'; } /* '' */
+.icon-angle-circled-down:before { content: '\e86a'; } /* '' */
+.icon-down:before { content: '\e86b'; } /* '' */
+.icon-left:before { content: '\e86c'; } /* '' */
+.icon-right:before { content: '\e86d'; } /* '' */
+.icon-up:before { content: '\e86e'; } /* '' */
+.icon-down-big:before { content: '\e86f'; } /* '' */
+.icon-left-big:before { content: '\e870'; } /* '' */
+.icon-right-big:before { content: '\e871'; } /* '' */
+.icon-up-big:before { content: '\e872'; } /* '' */
+.icon-right-hand:before { content: '\e82f'; } /* '' */
+.icon-left-hand:before { content: '\e830'; } /* '' */
+.icon-up-hand:before { content: '\e831'; } /* '' */
+.icon-down-hand:before { content: '\e832'; } /* '' */
+.icon-left-circled:before { content: '\e873'; } /* '' */
+.icon-right-circled:before { content: '\e874'; } /* '' */
+.icon-up-circled:before { content: '\e875'; } /* '' */
+.icon-down-circled:before { content: '\e876'; } /* '' */
+.icon-cw:before { content: '\e877'; } /* '' */
+.icon-ccw:before { content: '\e878'; } /* '' */
+.icon-arrows-cw:before { content: '\e879'; } /* '' */
+.icon-play-circled:before { content: '\e87a'; } /* '' */
+.icon-desktop:before { content: '\e87b'; } /* '' */
+.icon-laptop:before { content: '\e8f3'; } /* '' */
+.icon-tablet:before { content: '\e87c'; } /* '' */
+.icon-mobile:before { content: '\e87d'; } /* '' */
+.icon-globe:before { content: '\e87e'; } /* '' */
+.icon-table:before { content: '\e880'; } /* '' */
+.icon-columns:before { content: '\e87f'; } /* '' */
+.icon-spin5:before { content: '\e8c4'; } /* '' */
+.icon-suitcase:before { content: '\e882'; } /* '' */
+.icon-book:before { content: '\e883'; } /* '' */
+.icon-check:before { content: '\e884'; } /* '' */
+.icon-check-empty:before { content: '\e885'; } /* '' */
+.icon-circle:before { content: '\e886'; } /* '' */
+.icon-circle-empty:before { content: '\e887'; } /* '' */
+.icon-chart-bar:before { content: '\e888'; } /* '' */
+.icon-credit-card:before { content: '\e889'; } /* '' */
+.icon-floppy:before { content: '\e88a'; } /* '' */
+.icon-megaphone:before { content: '\e88b'; } /* '' */
+.icon-bug:before { content: '\e8cf'; } /* '' */
+.icon-filter:before { content: '\e88c'; } /* '' */
+.icon-magic:before { content: '\e88d'; } /* '' */
+.icon-euro:before { content: '\e88e'; } /* '' */
+.icon-sort:before { content: '\e88f'; } /* '' */
+.icon-sort-down:before { content: '\e890'; } /* '' */
+.icon-sort-up:before { content: '\e891'; } /* '' */
+.icon-sort-alt-up:before { content: '\e892'; } /* '' */
+.icon-sort-alt-down:before { content: '\e893'; } /* '' */
+.icon-sort-name-up:before { content: '\e894'; } /* '' */
+.icon-sort-name-down:before { content: '\e895'; } /* '' */
+.icon-sort-number-up:before { content: '\e896'; } /* '' */
+.icon-sort-number-down:before { content: '\e897'; } /* '' */
+.icon-gauge:before { content: '\e898'; } /* '' */
+.icon-sitemap:before { content: '\e8f4'; } /* '' */
+.icon-medkit:before { content: '\e8c1'; } /* '' */
+.icon-building:before { content: '\e8c6'; } /* '' */
+.icon-css3:before { content: '\e8f8'; } /* '' */
+.icon-facebook-squared:before { content: '\e8fa'; } /* '' */
+.icon-gplus-squared:before { content: '\e8c2'; } /* '' */
+.icon-html5-1:before { content: '\e8f9'; } /* '' */
+.icon-linkedin-squared:before { content: '\e8fb'; } /* '' */
+.icon-skype-1:before { content: '\e8fc'; } /* '' */
+.icon-trello:before { content: '\e8bf'; } /* '' */
+.icon-twitter-squared:before { content: '\e8d4'; } /* '' */
+.icon-twitter:before { content: '\e8ba'; } /* '' */
+.icon-windows:before { content: '\e8f5'; } /* '' */
+.icon-youtube:before { content: '\e8be'; } /* '' */
+.icon-youtube-play:before { content: '\e8c0'; } /* '' */
+.icon-user:before { content: '\e899'; } /* '' */
+.icon-users:before { content: '\e89a'; } /* '' */
+.icon-user-add:before { content: '\e89b'; } /* '' */
+.icon-check-1:before { content: '\e89c'; } /* '' */
+.icon-cancel-1:before { content: '\e89d'; } /* '' */
+.icon-address:before { content: '\e8db'; } /* '' */
+.icon-location-1:before { content: '\e8da'; } /* '' */
+.icon-map:before { content: '\e8dc'; } /* '' */
+.icon-login-1:before { content: '\e89e'; } /* '' */
+.icon-logout-1:before { content: '\e89f'; } /* '' */
+.icon-down-1:before { content: '\e8a0'; } /* '' */
+.icon-left-1:before { content: '\e8a1'; } /* '' */
+.icon-right-1:before { content: '\e8a2'; } /* '' */
+.icon-up-1:before { content: '\e8a3'; } /* '' */
+.icon-trophy:before { content: '\e8dd'; } /* '' */
+.icon-flight-1:before { content: '\e8d7'; } /* '' */
+.icon-mouse:before { content: '\e8de'; } /* '' */
+.icon-suitcase-1:before { content: '\e8f1'; } /* '' */
+.icon-chart-pie:before { content: '\e8a4'; } /* '' */
+.icon-chart-line:before { content: '\e8a5'; } /* '' */
+.icon-chart-bar-1:before { content: '\e8d5'; } /* '' */
+.icon-chart-area:before { content: '\e8d6'; } /* '' */
+.icon-megaphone-1:before { content: '\e8d8'; } /* '' */
+.icon-flow-cascade:before { content: '\e8f6'; } /* '' */
+.icon-flow-branch:before { content: '\e8f7'; } /* '' */
+.icon-evernote:before { content: '\e8d3'; } /* '' */
+.icon-aboveground-rail:before { content: '\e8a6'; } /* '' */
+.icon-airport:before { content: '\e8a7'; } /* '' */
+.icon-bar:before { content: '\e8a8'; } /* '' */
+.icon-belowground-rail:before { content: '\e8a9'; } /* '' */
+.icon-bicycle:before { content: '\e8aa'; } /* '' */
+.icon-bus:before { content: '\e8ab'; } /* '' */
+.icon-cafe:before { content: '\e8ac'; } /* '' */
+.icon-campsite:before { content: '\e8ad'; } /* '' */
+.icon-college:before { content: '\e8ce'; } /* '' */
+.icon-commerical-building:before { content: '\e8e3'; } /* '' */
+.icon-credit-card-1:before { content: '\e8e1'; } /* '' */
+.icon-ferry:before { content: '\e8ae'; } /* '' */
+.icon-fuel:before { content: '\e8af'; } /* '' */
+.icon-giraffe:before { content: '\e8b0'; } /* '' */
+.icon-golf:before { content: '\e8b1'; } /* '' */
+.icon-grocery-store:before { content: '\e8b2'; } /* '' */
+.icon-library:before { content: '\e8c5'; } /* '' */
+.icon-lodging:before { content: '\e8b3'; } /* '' */
+.icon-monument:before { content: '\e814'; } /* '' */
+.icon-museum:before { content: '\e813'; } /* '' */
+.icon-pitch:before { content: '\e8b4'; } /* '' */
+.icon-police:before { content: '\e8b5'; } /* '' */
+.icon-religious-jewish:before { content: '\e8e4'; } /* '' */
+.icon-restaurant:before { content: '\e8df'; } /* '' */
+.icon-school:before { content: '\e8b6'; } /* '' */
+.icon-shop:before { content: '\e8e2'; } /* '' */
+.icon-skiing:before { content: '\e8b7'; } /* '' */
+.icon-swimming:before { content: '\e8e0'; } /* '' */
+.icon-tennis:before { content: '\e8e5'; } /* '' */
+.icon-theatre:before { content: '\e8b8'; } /* '' */
+.icon-town-hall:before { content: '\e8b9'; } /* '' */
+.icon-android:before { content: '\e8eb'; } /* '' */
+.icon-wikipedia:before { content: '\e8ea'; } /* '' */
+.icon-w3c:before { content: '\e8ee'; } /* '' */
+.icon-html5:before { content: '\e8ef'; } /* '' */
+.icon-ie:before { content: '\e8f2'; } /* '' */
+.icon-ninetyninedesigns:before { content: '\e8e9'; } /* '' */
+.icon-appstore:before { content: '\e8d9'; } /* '' */
+.icon-skype:before { content: '\e8ed'; } /* '' */
+.icon-th-large:before { content: '\e815'; } /* '' */
+.icon-th:before { content: '\e816'; } /* '' */
+.icon-th-list:before { content: '\e817'; } /* '' */
+.icon-view-mode:before { content: '\e8bc'; } /* '' */
+.icon-tag:before { content: '\e811'; } /* '' */
+.icon-tags:before { content: '\e812'; } /* '' */
+.icon-bookmark-1:before { content: '\e8ec'; } /* '' */
+.icon-bookmark-empty-1:before { content: '\e8f0'; } /* '' */
+.icon-zoom-in-1:before { content: '\e8c7'; } /* '' */
+.icon-zoom-out-1:before { content: '\e8c8'; } /* '' */
+.icon-flight:before { content: '\e8bd'; } /* '' */
+.icon-leaf:before { content: '\e8bb'; } /* '' */
+.icon-fontsize:before { content: '\e8d2'; } /* '' */
+.icon-book-1:before { content: '\e8c9'; } /* '' */
+.icon-certificate:before { content: '\e8cd'; } /* '' */
+.icon-filter-1:before { content: '\e8cc'; } /* '' */
+.icon-address-book:before { content: '\e8e6'; } /* '' */
+.icon-glasses:before { content: '\e8d0'; } /* '' */
+.icon-hearing-impaired:before { content: '\e8d1'; } /* '' */
+.icon-accessibility:before { content: '\e8e7'; } /* '' */
+.icon-ok-1:before { content: '\e8ca'; } /* '' */
+.icon-briefcase:before { content: '\e881'; } /* '' */
+
+@mixin fontello($icon-name, $icon-margin:0.2em, $icon-size:inherit, $icon-color:inherit) {
+	font-family: 'gasamen-fontello';
+	content:$icon-name;
+	font-style: normal;
+	font-weight: normal;
+	color: $icon-color;
+	speak: none;
+	
+	display: inline-block;
+	text-decoration: inherit;
+	width: 1em;
+	margin-right: $icon-margin;
+	text-align: center;
+	/* opacity: .8; */
+	
+	/* For safety - reset parent styles, that can break glyph codes*/
+	font-variant: normal;
+	text-transform: none;
+	 
+	/* fix buttons height, for twitter bootstrap */
+	line-height: 1em;
+	
+	/* Animation center compensation - margins should be symmetric */
+	/* remove if not needed */
+	margin-left: $icon-margin;
+	
+	/* you can be more comfortable with increased icons size */
+	font-size: $icon-size;
+	
+	/* Uncomment for 3D effect */
+	/* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+
+@mixin box-shadow($top, $left, $blur, $color) {
+	-webkit-box-shadow: $top $left $blur $color;
+	box-shadow: $top $left $blur $color;
+}
+
+@mixin hover-fx{
+	background-color:$highlight-color !important;
+	@include single-transition;
+	box-shadow:0 1px 0 1px #fff inset;
+	cursor:pointer;
+}
+
+@mixin rotate($degrees) {
+	-webkit-transform: rotate(#{$degrees}deg); 
+	   -moz-transform: rotate(#{$degrees}deg); 
+	    -ms-transform: rotate(#{$degrees}deg); 
+	     -o-transform: rotate(#{$degrees}deg); 
+	        transform: rotate(#{$degrees}deg);
+}
+
+/*	Gebruik
+	$num1: 50 Old browsers
+	$num2: 0.5 New browsers
+*/
+@mixin opacity($num1, $num2) {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$num1)";	/* IE 8 */
+  filter: alpha(opacity=$num1);  /* IE 5-7 */
+  -moz-opacity: $num2;  /* Netscape */
+  -khtml-opacity: $num2;  /* Safari 1.x */
+  opacity: $num2;
+}
+
+@mixin truncate {
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+}
+
+@mixin gradient($from-color, $to-color) {
+    background-color: mix($from-color, $to-color); /* Fallback */
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from($from-color), to($to-color));
+    background-image: -webkit-linear-gradient(top, $from-color, $to-color); 
+    background-image:    -moz-linear-gradient(top, $from-color, $to-color);
+    background-image:     -ms-linear-gradient(top, $from-color, $to-color);
+    background-image:      -o-linear-gradient(top, $from-color, $to-color);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#{$from-color}', EndColorStr='#{$to-color}')";
+}
+
+@mixin flags {
+	background:url(http://media.dejongintra.nl/styles/siteimages/sprt_geoflags.png);
+	display:inline-block;
+	width:20px;
+	height:13px;
+	
+	&.flags-ae{background-position:0 -63px}
+	&.flags-at{background-position:0 -126px}
+	&.flags-au{background-position:0 -189px}
+	&.flags-be{background-position:0 -252px}
+	&.flags-bg{background-position:0 -315px}
+	&.flags-ca{background-position:0 -378px}
+	&.flags-ch{background-position:0 -441px}
+	&.flags-ci{background-position:0 -504px}
+	&.flags-cz{background-position:0 -567px}
+	&.flags-de{background-position:0 -630px}
+	&.flags-dk{background-position:0 -693px}
+	&.flags-ee{background-position:0 -756px}
+	&.flags-eg{background-position:0 -819px}
+	&.flags-es{background-position:0 -882px}
+	&.flags-fi{background-position:0 -945px}
+	&.flags-fr{background-position:0 -1008px}
+	&.flags-gb{background-position:0 -1071px}
+	&.flags-gr{background-position:0 -1134px}
+	&.flags-hr{background-position:0 -1197px}
+	&.flags-hu{background-position:0 -1260px}
+	&.flags-id{background-position:0 -1323px}
+	&.flags-ie{background-position:0 -1386px}
+	&.flags-il{background-position:0 -1449px}
+	&.flags-is{background-position:0 -1512px}
+	&.flags-it{background-position:0 -1575px}
+	&.flags-ke{background-position:0 -1638px}
+	&.flags-kh{background-position:0 -1701px}
+	&.flags-la{background-position:0 -1764px}
+	&.flags-lt{background-position:0 -1827px}
+	&.flags-lu{background-position:0 -1890px}
+	&.flags-lv{background-position:0 -1953px}
+	&.flags-ma{background-position:0 -2016px}
+	&.flags-mk{background-position:0 -2079px}
+	&.flags-mt{background-position:0 -2142px}
+	&.flags-my{background-position:0 -2205px}
+	&.flags-na{background-position:0 -2268px}
+	&.flags-nl{background-position:0 -2331px}
+	&.flags-no{background-position:0 -2394px}
+	&.flags-nz{background-position:0 -2457px}
+	&.flags-pl{background-position:0 -2520px}
+	&.flags-pt{background-position:0 -2583px}
+	&.flags-ro{background-position:0 -2646px}
+	&.flags-ru{background-position:0 -2709px}
+	&.flags-se{background-position:0 -2772px}
+	&.flags-sg{background-position:0 -2835px}
+	&.flags-si{background-position:0 -2898px}
+	&.flags-sk{background-position:0 -2961px}
+	&.flags-th{background-position:0 -3024px}
+	&.flags-tr{background-position:0 -3087px}
+	&.flags-tz{background-position:0 -3150px}
+	&.flags-us{background-position:0 -3213px}
+	&.flags-vn{background-position:0 -3276px}
+	&.flags-za{background-position:0 -3339px}
+}
+
+@mixin airline-logos {
+	background-repeat:no-repeat;
+	background-position:center right;	
+	
+	&.AA { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/AA.png'); }
+	&.AB { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/AB.png'); }
+	&.AC { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/AC.png'); }
+	&.AF { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/AF.png'); }
+	&.AP { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/AP.png'); }
+	&.AT { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/AT.png'); }
+	&.AY { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/AY.png'); }
+	&.AZ { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/AZ.png'); }
+	&.BA { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/BA.png'); }
+	&.BD { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/BD.png'); }
+	&.BR { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/BR.png'); }
+	&.BT { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/BT.png'); }
+	&.CI { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/CI.png'); }
+	&.CO { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/CO.png'); }
+	&.CX { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/CX.png'); }
+	&.CZ { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/CZ.png'); }
+	&.DL { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/DL.png'); }
+	&.EI { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/EI.png'); }
+	&.EK { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/EK.png'); }
+	&.FI { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/FI.png'); }
+	&.FJ { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/FJ.png'); }
+	&.GA { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/GA.png'); }
+	&.HR { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/HR.png'); }
+	&.HV { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/HV.png'); }
+	&.IB { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/IB.png'); }
+	&.IG { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/IG.png'); }
+	&.IV { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/IV.png'); }
+	&.JU { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/JU.png'); }
+	&.K2 { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/K2.png'); }
+	&.KA { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/KA.png'); }
+	&.KL { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/KL.png'); }
+	&.KM { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/KM.png'); }
+	&.KQ { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/KQ.png'); }
+	&.LH { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/LH.png'); }
+	&.LO { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/LO.png'); }
+	&.LY { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/LY.png'); }
+	&.MA { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/MA.png'); }
+	&.MH { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/MH.png'); }
+	&.MI { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/MI.png'); }
+	&.MK { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/MK.png'); }
+	&.NZ { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/NZ.png'); }
+	&.OA { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/OA.png'); }
+	&.OK { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/OK.png'); }
+	&.OS { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/OS.png'); }
+	&.OU { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/OU.png'); }
+	&.OV { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/OV.png'); }
+	&.PG { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/PG.png'); }
+	&.PW { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/PW.png'); }
+	&.QF { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/QF.png'); }
+	&.QV { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/QV.png'); }
+	&.RE { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/RE.png'); }
+	&.SA { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/SA.png'); }
+	&.SK { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/SK.png'); }
+	&.SN { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/SN.png'); }
+	&.SQ { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/SQ.png'); }
+	&.SW { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/SW.png'); }
+	&.TG { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/TG.png'); }
+	&.TK { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/TK.png'); }
+	&.TP { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/TP.png'); }
+	&.TS { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/TS.png'); }
+	&.U8 { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/U8.png'); }
+	&.UA { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/UA.png'); }
+	&.US { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/US.png'); }
+	&.VG { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/VG.png'); }
+	&.VN { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/VN.png'); }
+	&.VS { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/VS.png'); }
+	&.VY { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/VY.png'); }
+	&.W9 { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/W9.png'); }
+	&.WW { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/WW.png'); }
+	&.XX { background-image:url('http://media.dejongintra.nl/assets/transport/airline_logos/XX.png'); }
+}
+
+/*@mixin transport-logos {
+	&:before {
+		background: url('../images/transportation.png') no-repeat -80px 0;
+		width:24px;
+		height:24px;
+		position:absolute;
+	}
+	&.airplane:before { background-position: -80px 0; }
+	&.train { background-position: -60px -40px; }
+	&.touringcar { background-position: -40px -80px; }
+	&.car { background-position: -20px -120px; }
+	&.boat { background-position: 0 -160px; }
+}*/
+
+@mixin zoover-rating {
+	display:block;
+	font-size: inherit;
+	font-weight:bold;
+	color:orange;
+	
+	&:before {
+		@include fontello ('\e82d', $icon-color:#666);
+		font-size:$rem-base;
+		font-weight:normal;
+	}
+}
+
+.review-button {
+	@include grid-row;
+	position:relative;
+	display:inline-block;
+	width:auto;
+	z-index:10;
+	padding-right:rem-calc(56);
+	font-family: 'Nunito', sans-serif;
+	
+	line-height:1;
+	
+	> span:first-child {
+		position:relative;
+		display:inline-block;
+		min-width: rem-calc(64);
+		margin-top:rem-calc(8);
+		margin-bottom:rem-calc(16);
+		height:rem-calc(25);
+		font-size:rem-calc(14);
+		color:#4d4d4d;
+		white-space:nowrap;
+	}
+	
+	.zoover {
+		display:inline-block;
+		background: url($cdn+'/siteimages/svg/zoover.svg') no-repeat top -4px left -4px;
+  		background-size: contain;
+	}
+	
+	
+}
+
+.rating {
+	display:inline-block;
+	position:absolute;
+	top:rem-calc(-16);
+	right:rem-calc(8);
+	padding:rem-calc(14);
+	background: url($cdn+'/siteimages/svg/review-balloon.svg') no-repeat top 2px center;
+	background-size: contain;
+	text-align:center;
+	font-weight:700;
+	color:#fff;
+}
+
+.zoover + .rating {
+	right:rem-calc(16) !important;
+}
+
+/*Wanneer een review wordt opgevolgd door aanbieding, corrigeer positie van h6 */
+.review-button + h6 { bottom:-16px !important; }
+
+.review-component {
+	.review {
+		@include grid-row;
+		position:relative;
+		margin-bottom:$rem-base;
+		padding:$rem-base;
+		border:1px solid #ddd;
+		border-radius:$global-radius;
+		
+		.review-description {
+			@include grid-column(12);
+			margin-bottom:0;
+			padding-top:0;
+			border: none;
+			P {
+				font-size:rem-calc(14);
+				line-height:1.4;
+			}
+		}
+		
+		.review-rating {
+			@include grid-row();
+			padding:rem-calc(10 0);
+		}
+		
+		.review-rating-average {
+			@include grid-column(2);
+			
+			span {
+				display:inline-block;
+			}
+		}
+		
+		.review-rating-numbers {
+			@include grid-column(10);
+			
+			> ul {
+				@include block-grid(2, $spacing:7.5px);
+				
+				& > li {
+					label {
+						position:relative;
+						border-bottom:1px dotted #999;
+						cursor:default;
+						font-size:rem-calc(13);
+						
+						> span {
+							position:relative;
+							top: rem-calc(6);
+							padding-right:rem-calc(5);
+							background:#fff; //scale-color(#0071ad, $lightness:80%);
+							font-weight:500;
+						}
+						
+						.rated {
+							position:absolute !important;
+							right:0;
+							padding-left:rem-calc(5);
+							font-weight:400;
+							color:scale-color(#0071ad, $lightness:-80%);
+						}
+					}
+				}
+			}
+		}
+		.rating {
+			position:relative !important;
+			top:rem-calc(-22);
+			padding:rem-calc(24);
+			font-size:rem-calc(22);
+		}
+	}
+}
+
+.search-result-toolbar {
+	@include grid-row($behavior:nest-collapse);
+	background-color:#eee;
+	border-radius:$global-radius;
+	margin-bottom:rem-calc(24);
+	
+	.search-result-amount {
+		@include grid-column(3, $collapse:true);
+		padding-left:rem-calc(8);
+		margin:rem-calc(4 0)
+	}
+	.search-result-sort {
+		@include grid-column(9, $collapse:true);
+		margin:rem-calc(4 0)
+	}
+	.search-result-amount {
+		label {
+			display:inline-block;
+			margin:0;
+			height: rem-calc(32);
+			line-height:rem-calc(32);
+			font-size:rem-calc(13);
+			white-space:nowrap;
+		}
+		select {
+			width:rem-calc(45);
+			margin-bottom: 0;
+			height: rem-calc(32);
+			padding:2px;
+		}
+	}
+	.search-result-paging {
+		@include grid-column(9);
+		.result-paging {
+			margin:0;
+			li { height:auto; }
+		}
+	}
+	
+	@media #{$screen} {
+		.search-result-amount {
+			display:none;
+		}
+		.search-result-sort {
+			@include grid-column(12, $collapse:true);
+		}
+		.search-result-paging {
+			@include grid-column(12, $collapse:true);
+			text-align:center;
+		}
+	}
+	@media #{$medium-up} {
+		.search-result-amount {
+			display:table;
+			@include grid-column(3, $collapse:true);
+			padding-left:rem-calc(8);
+		}
+		.search-result-sort {
+			@include grid-column(9, $collapse:true);
+		}
+		.search-result-paging {
+			@include grid-column(9);
+			text-align:left;
+		}
+	}
+}
+
+.result-sort {
+	@include sub-nav($font-color: $primary-color, $active-bg: #fff);
+	margin:0;
+	padding-top:0;
+	height:rem-calc(32);
+	dt,
+	dd { 
+		margin-bottom:0;
+		height:rem-calc(32);
+		line-height:rem-calc(32);
+	}
+	dt label {
+		height:rem-calc(32);
+		line-height:rem-calc(32);
+	}
+	dd {
+		margin-left:rem-calc(4);
+		&.active a {
+			color:$primary-color;
+			&:hover {
+				cursor:pointer;
+			}
+		}
+		&.ascending a:after {
+			@include fontello('\e892');
+			margin-right:0;
+			margin-left:emCalc(5px);
+			color:#999;
+		}
+		&.descending a:after {
+			@include fontello('\e893');
+			margin-right:0;
+			margin-left:emCalc(5px);
+			color:#999;
+		}
+	}
+	
+	label {
+		font-size: inherit;
+	}
+	
+}
+
+.result-paging {
+	@include pagination;
+	
+	li {
+		a {
+			border-radius:0 0 5.1px 5.1px;
+			padding: rem-calc(8 16);
+		}
+		
+		&.previous a:before {
+			@include fontello('\e870');
+		}
+		&.next a:before {
+			@include fontello('\e871');
+		}
+	}
+}
+
+
+body {
+	position:relative;
+	
+	@media #{$large-up} {
+		background: #fff;
+		
+		background-repeat: no-repeat;
+		background-position: 0px 0px;
+		background-attachment: fixed; 
+		-webkit-background-size: contain;
+		   -moz-background-size: contain;
+			 -o-background-size: contain;
+				background-size: contain;
+		width:100%;
+		height:100%;
+	
+	
+	
+	
+	&.theme-ST { background-image: url(http://media.dejongintra.nl/styles/siteimages/themes/theme-ST.jpg); } /*Steden*/
+	&.theme-ZO { background-image: url(http://media.dejongintra.nl/styles/siteimages/themes/theme-ZO.jpg); } /*Zonvakanties*/
+	&.theme-BU { background-image: url(http://media.dejongintra.nl/styles/siteimages/themes/theme-BU.jpg); } /*Busreizen*/
+	&.theme-VR { background-image: url(http://media.dejongintra.nl/styles/siteimages/themes/theme-VR.jpg); } /*Verre reizen*/
+	&.theme-AV { background-image: url(http://media.dejongintra.nl/styles/siteimages/themes/theme-AV.jpg); } /*Autovakanties*/
+	&.theme-RR	{ background-image: url(http://media.dejongintra.nl/styles/siteimages/themes/theme-RR.jpg); } /*Rondreizen*/
+	&.theme-WI { background-image: url(http://media.dejongintra.nl/styles/siteimages/themes/theme-WI.jpg); } /*Wintersport*/
+	&.theme-RC { background-image: url(http://media.dejongintra.nl/styles/siteimages/themes/theme-RC.jpg); } /*Riviercruises*/
+	&.theme-CA { background-image: url(http://media.dejongintra.nl/styles/siteimages/themes/theme-CA.jpg); } /*Campings*/
+	&.theme-TR { background-image: url(http://media.dejongintra.nl/styles/siteimages/themes/theme-TR.jpg); } /*Treinreizen*/
+	&.theme-AT { background-image: url(http://media.dejongintra.nl/styles/siteimages/themes/theme-AT.jpg); } /*Attractieparken*/
+	&.theme-FV	{ background-image: url(http://media.dejongintra.nl/styles/siteimages/themes/theme-FV.jpg); } /*Fietsvakanties*/
+	&.theme-BO { background-image: url(http://media.dejongintra.nl/styles/siteimages/themes/theme-BO.jpg); } /*Per boot*/
+	&.theme-VL { background-image: url(http://media.dejongintra.nl/styles/siteimages/themes/theme-VL.jpg); } /*Vliegvakanties*/
+	&.theme-WK { background-image: url(http://media.dejongintra.nl/styles/siteimages/themes/theme-WK.jpg); } /*Weekend weg*/
+	&.theme-KM	{ background-image: url(http://media.dejongintra.nl/styles/siteimages/themes/theme-KM.jpg); } /*Kerstmarkten*/
+	}
+}
+
+figure { margin:0; }
+
+.hidden {
+	position: absolute !important;
+	clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+	clip: rect(1px, 1px, 1px, 1px);
+}
+
+.scriptcontainer {
+	display:none;
+}
+
+.wrapper { position:relative; }
+
+@mixin primary-cta {
+	$color:$cta1-color;
+	
+	@include button(
+		$padding:$button-tny,
+		$bg:$color,
+		$radius:true
+	);
+	@include gradient($color, darken($color, 10%));
+	@include single-transition;
+	border-bottom:1px solid rgba(#000, 0.4);
+	box-shadow:0 1px 2px #666, 0 1px 0 scale-color($color, $lightness:60%) inset;
+	margin-bottom:0;
+	font-size:rem-calc(16);
+	text-shadow:0 -1px 1px rgba(#000, 0.4);
+	&:hover,
+	&:active {
+		background:$color;
+	}
+}
+
+.cta1-button {
+	@include primary-cta;
+}
+
+@mixin secondary-cta {
+	$color:$cta2-color;
+	
+	@include button(
+		$padding:$button-tny,
+		$bg:$color,
+		$radius:true
+	);
+	@include gradient($color, darken($color, 10%));
+	@include single-transition;
+	border-bottom:1px solid rgba(#000, 0.4);
+	box-shadow:0 1px 2px #666, 0 1px 0 scale-color($color, $lightness:60%) inset;
+	margin-bottom:0;
+	text-shadow:0 -1px 1px rgba(#000, 0.4);
+	&:hover,
+	&:active {
+		background:$color;
+	}
+}
+
+.cta2-button {
+	@include secondary-cta;
+}
+
+.component-head-divider {
+	border-bottom:2px solid scale-color($red-color, $lightness:50%);
+	padding-bottom:5px;
+}
+
+.choose-divider {
+	position:relative;
+	border-color:darken($primary-color, 10%);
+	font-size: 20px;
+	color: darken($primary-color, 10%);
+	&:before {
+		position:absolute;
+		display:inline-block;
+		top:-13px;
+		left:0;
+		right:0;
+		margin:0 auto;
+		width:rem-calc(30);
+		content:"of";
+		line-height:1;
+		text-align:center;
+	}
+}
+
+/*Gebruiker ziet direct naar welke type file gelinkt wordt*/
+a[href^="mailto:"], a[href$=".pdf"], a[href$=".doc"], a[href$=".xls"] {
+    background-image: url("../siteimages/bookingform/sprite_linktypes.png");
+    background-position: left top;
+    background-repeat: no-repeat;
+    margin-right: 0.2em;
+    padding-right: 14px;
+	display: inline-block !important;
+}
+a[href^="mailto:"] {
+    background-position: 100% -178px;
+}
+a[href$=".pdf"] {
+    background-position: 100% -36px;
+}
+a[href$=".doc"] {
+    background-position: 100% -72px;
+}
+a[href$=".xls"] {
+    background-position: 100% -108px;
+}
+
+/*Aantal producten achter een item
+Frankrijk (123)*/
+.list-counter {
+	a > span {
+		margin-left:rem-calc(5);
+		font-size:80%;
+		color: #444;
+		text-shadow:none;
+	}
+}
+
+.badge-counter {
+	margin: rem-calc(0 1 0 5);
+	padding: rem-calc(1 5);
+	background-color: gold;
+	border-radius: $global-rounded;
+	color: #333;
+	font-weight: bold;
+	text-align:center;
+}
+
+.price-label {
+	position:absolute;
+	bottom:1px;
+	right:5px;
+	background:url(../images/price-label-small.png) bottom no-repeat;
+	background-position:1px 1px;
+	display:inline-block;
+	width:rem-calc(64);
+	height:rem-calc(35);
+	line-height:1;
+	text-align:right;
+	color: #fff !important;				
+	
+	.amount {
+		display:block;
+		padding-right:rem-calc(8);
+		font-family: 'Nunito', sans-serif;
+		font-weight:700;
+		line-height:1;
+		
+		&:before {
+			content:"vanaf";
+			display:block;
+			margin:rem-calc(7 5 2 0);
+			font-size:10px;
+		}
+	}
+}
+
+.star-rating{
+	@include inline-list;
+	margin:0 auto $rem-base / 2;
+	line-height:1;
+	
+	li {
+		margin-left:rem-calc(2);
+		font-size:rem-calc(12);
+		&:before {
+			@include fontello ('\e824', $icon-margin:0, $icon-color:scale-color($primary-color, $lightness:10%));
+		}
+		
+		&.rated {
+			&:before {
+				@include fontello ('\e823', $icon-margin:0, $icon-color:scale-color($primary-color, $lightness:10%));
+			}
+		}
+		
+		&.plus {
+			&:before {
+				content:"+";
+			}
+		}
+	}
+}
+
+.telephone {
+	font-weight:bold;
+	&:before {
+		@include fontello('\e849');
+		@include rotate(45);
+		margin-right:0px;
+	}
+}
+
+.report-component {
+	padding:0 !important;
+	background:url(../images/report-border.png);
+	
+	.inner {
+		position:relative;
+		margin:rem-calc(5);
+		padding:rem-calc(10);
+	}
+	
+	header,
+	footer {
+		position:relative;
+		> * {
+			color:inherit;
+		}
+	}
+
+	footer a {
+		color:$primary-color;
+
+		&:before {
+			@include fontello('\e868');
+			margin-left:0;
+		}
+	}
+	
+	p {
+		line-height:1.3;
+	}
+	
+	.close {
+		position:absolute;
+		top:0;
+		right:0;
+	}
+	
+	&.warning {	
+		@include alert(
+			$bg: whitesmoke,
+			$radius: $global-radius
+		);
+		text-shadow:1px 1px 1px #fff;
+		
+		.inner { background:scale-color(whitesmoke, $lightness:14%); }
+	}
+}
+
+.breadcrumb-component {
+	//background:scale-color($primary-color, $lightness:80%);
+	
+	> div {
+		@include grid-row();
+		background:#fff;
+		box-shadow:0 4px 4px -4px #000 inset;
+		border-radius:0 0 $global-radius $global-radius;
+		margin-bottom:5px;
+		
+		> ul {
+			@include crumb-container;
+			background: none;
+			margin-bottom:0;
+			margin-left:15px;
+			padding:0;
+			border: none;
+			
+			li {
+				@include crumbs;
+				padding:rem-calc(10 0);
+				color:#333;
+				
+				&:before {
+					top:-1px;
+					margin:rem-calc(0 5);
+				}
+				
+				&:nth-of-type(2):before {
+					content:"";
+					display:inline-block;
+					width:1px;
+				}
+				
+				&:first-child {
+					color:#444;
+					//font-size:12px;
+				}
+				
+				&.current > span {
+					font-weight:bold;
+					color:#444;
+				}
+				
+				> a {
+					padding:5px;
+					background-color:rgba(#fff, 0.7);
+					border-radius:2.1px;
+					border:1px solid #fff;
+					
+					&:hover {
+						border:1px solid darken(#fff, 10%);
+					}
+				}
+			}
+		}
+	}
+}
+
+.usp-component {
+	@include block-grid($per-row: 3);
+	
+	& > li {
+		position:relative;
+		
+		&:before {
+			@include fontello("\e8ca", $icon-color:#fff, $icon-margin:0);
+			position:absolute;
+			top:3px;
+			padding-top:7px;
+			width:25px;
+			height:25px;
+			background-color:lighten($primary-color, 30%);
+			border-radius:$global-rounded;
+		}
+	}
+	
+	h3 {
+		padding-left:30px;
+		font-size:$h4-font-size;
+		color:$primary-color;
+	}
+	
+	p {
+		margin-top:-5px;
+		padding-left:30px;
+		color:lighten($primary-color, 30%);
+		line-height:1.3;
+		
+		> img {
+			margin-top:5px;
+		}
+	}
+}
+
+/*------------------------------------*\
+    #SUGGESTIVE-SEARCH
+\*------------------------------------*/
+
+.suggestive-search {
+	position:relative;
+	
+	&.pos-relative {		
+		.suggestive-search__results {
+			position:relative;
+			z-index:0;
+			margin-bottom:$rem-base;
+		}
+	}
+	
+	&.pos-absolute {
+		.suggestive-search__results {
+			position:absolute;
+			z-index:1;
+			width:100%;
+			left:0;
+			right:0;
+		}
+	}
+}
+
+/**
+ * Results
+ */
+.suggestive-search__results {
+	display:none;
+	margin:-$rem-base 0 0;
+	list-style:none;
+	background:#fff;
+	border:1px solid #ddd;
+	border-radius:$global-radius;
+	
+	.suggestive-search__item {
+		font-size: rem-calc(14);
+	}
+	
+	.suggestive-search__link {
+		display:block;
+		padding: rem-calc(4 5 4 15);
+		font-size: inherit;
+		font-weight:300;
+		color:#555;
+		-webkit-tap-highlight-color: transparent;
+		
+		&:hover,
+		&:focus {
+			text-decoration:underline;
+			
+		}
+	}
+	
+	&.drop-down {
+		display:block;
+	}
+}
+
+.touch .suggestive-search__results {
+	overflow-y: scroll;
+  	-webkit-overflow-scrolling: touch;
+	max-height:200px;
+}
+.touch .suggestive-search__link {
+	padding: rem-calc(8 5 8 15);
+}
+
+/*------------------------------------*\
+    #SEARCH-COMPONENT
+\*------------------------------------*/
+.search-component {
+	position:relative;
+	height:260px;
+	padding:10px 10px 0;
+	background:#fff;
+	
+	> .inner {
+		@include grid-row;
+		background:#fff;
+	}
+	
+	dl {
+		@include grid-column($columns:12);
+		margin-bottom:0;
+		
+		dt {
+			margin-bottom:$rem-base;
+			font-size:$h3-font-size;
+			font-weight:400;
+			color:scale-color($primary-color, $lightness:20%);
+			white-space:nowrap;
+			
+			&:before {
+				@include fontello("\e81e");
+			}
+		}
+		dd {
+			margin:0;
+		}
+	}
+	
+	footer {
+		@include grid-column($columns:12);
+		text-align:right;
+		> button{
+			//@include button($padding:$button-sml, $bg:$orange-color, $radius:true);
+			@extend .cta1-button;
+			margin-bottom:0;
+			//box-shadow:0 1px 2px rgba(#000, 0.4);
+		}
+	}
+
+	@media #{$small-up} {
+		z-index:99;
+		> .inner {
+			margin-top:-30px;
+			padding:20px;
+			border:1px solid #ddd;
+			box-shadow:0px 1px 5px -2px #888;
+		}
+	}
+	
+	@media #{$medium-up} {
+		z-index:0;
+		> .inner {
+			margin-top:0;
+			padding:0px;
+			border:0;
+			box-shadow:none;
+		}
+	}
+}
+
+/*Search component op homepage*/
+.homepage .search-component {
+	@media #{$small-up} {
+		> .inner {
+			margin-top:0;
+			padding:0px;
+			border:0;
+			box-shadow:none;
+		}
+	}
+}
+
+.live-search-component {
+	@include grid-row($behavior:nest-collapse);
+	border:2px solid #ddd;
+	border-radius: $global-radius;
+	position:relative;
+	margin-top: 15px;
+	input[type="button"].search-button {
+		@include prefix-postfix-base();
+		@include button($bg:whitesmoke, $is-input: true);
+		@include single-transition;
+		@include grid-column(
+		$columns:3,
+		$float:left
+		);
+		margin-bottom:0;
+		border-radius: 0 $global-radius $global-radius 0;
+		/*
+		Eventueel button als cta1 presenteren:
+		
+		@include prefix-postfix-base();
+		@include grid-column(
+		$columns:3,
+		$float:left
+		);
+		@extend .cta1-button;
+		*/
+	}
+	
+	input[type="search"].search-input {
+		@include grid-column($columns:9);
+		margin-bottom:0;
+		border-radius: $global-radius 0 0 $global-radius;
+	}
+	
+	.live-results {
+		position:absolute;
+		left: 0;
+		top: 38px;
+		z-index:999;
+		width:100%;
+		@include box-shadow(0,3px,3px,#999);
+				
+		.results {
+			position:relative;
+			width: inherit;
+			border:1px solid #999;
+			border-top-width:5px;
+			padding-bottom:0;
+			
+			ul {
+				margin: 0;
+				padding:0;
+				list-style: none;
+				
+				&:before {
+					@include css-triangle(5px, #999, top);
+					position:absolute;
+					top:0;
+					left:49%;
+				}
+				
+				li {
+					padding:10px;
+					border-top:1px solid white;
+					border-bottom:1px solid #ddd;
+					background-color:darken(white, 2%);
+					
+					
+					&:hover {
+						@include hover-fx();						
+					}
+					
+					&.more-results {
+						text-align:center;
+						background-color:darken(white, 5%);
+						padding:5px 0 !important;
+					}
+					
+					&.no-results {
+						background-color:white !important;
+						padding:10px 0 !important;
+													
+						&:hover {
+							background-color:white !important;
+							cursor:default;
+						}
+
+					}
+					
+					h6 {
+						padding:0 0 0 $rem-base;
+						margin:0;
+						white-space:nowrap;
+						overflow:hidden;
+						text-overflow: ellipsis;
+						font-weight:normal;
+					}
+					
+					p {
+						padding:0 0 0 $rem-base;
+						margin: 0;
+						white-space:nowrap;
+						overflow:hidden;
+						text-overflow: ellipsis;
+						line-height:1.2;						
+						
+						&.ls-features {
+							line-height:1.6;
+							margin-top:5px;
+							
+							span {
+								
+								float:left;
+								
+								&.zoover {
+									color:#FCA805;
+									font-weight:bold;
+									margin-right:10px;
+								}
+								
+								&.price {
+									float:right;
+									
+									b {
+										color:#000;
+										padding:3px
+									}
+									
+								}
+								
+								
+								&.microIcon_transport {
+									background:url(http://media.dejongintra.nl/styles/siteimages/sprt_micro-icons.png) no-repeat;
+									display:inline-block;
+									position:relative;
+									top:5px;
+									width:12px;
+									height:12px;
+									margin-right:10px;
+									background-position: 0 -992px;
+									
+									&:first-child {
+										margin-left:0;
+									}
+									
+									&.microIcon_bu { background-position:0 -682px; }
+									&.microIcon_vl { background-position:0 -744px; }
+									&.microIcon_fe { background-position:0 -806px; }
+									&.microIcon_tr { background-position:0 -868px; }
+									&.microIcon_au { background-position:0 -930px; }
+								}
+								
+							}
+						}
+						
+						&.ls-arrangement {
+							padding: 0 0 0 15px;
+							margin: 0 0 2px 15px;
+							color: #0080d1;
+							white-space: nowrap;
+							overflow: hidden;
+							text-overflow: ellipsis;
+							line-height: 1.2em;
+							font-size: 0.9em;
+							background: url("../siteimages/components/product-detail/heading-small.png") no-repeat 3px 0px;
+						}
+						
+					}
+					
+					.ls-cat {
+						p {
+							text-align:right;
+							color:$body-font-color-light;
+							white-space:normal;
+							overflow: visible;
+							text-overflow:none;
+							margin-top:-3px;
+							padding:0;
+						}
+						
+						.geoflags {
+							@include flags;
+							float:right;
+							margin-top:0;
+						}
+
+					}
+				}
+			}
+		}
+	}
+	
+	#SearchWait {
+		position: absolute;
+		top: 11px;
+		right: 27%;
+		width: 16px;
+		z-index: 3;
+	}
+}
+
+.tab-component {
+	$accent: scale-color($red-color, $lightness:50%);
+	border-radius:0 0 5px 5px;
+	margin-bottom:$rem-base;
+
+	.tabs {
+		border-bottom:2px solid $accent;
+		
+		> dd {
+			border-width:2px 2px 0;
+			border-style:solid;
+			border-color:#fff;
+				
+			a,
+			a:link {
+				margin:0px 2px 4px;
+				border:1px solid darken(whitesmoke, 20%);
+				border-radius:2.1px;
+				box-shadow:0 1px 0 0 #FFFFFF inset;
+				text-shadow:1px 1px 1px #fff;
+				color:darken(whitesmoke, 45%);
+				@include single-transition;
+				//border-bottom:1px solid rgba(#000, 0.4);
+				box-shadow:0 1px 2px rgba(#000, 0.4);
+				
+				> span {
+					display: table-cell;
+					height: 32px;
+					vertical-align: middle;
+				}
+			}
+			&.active,
+			&:active {
+				top:2px;
+				border-color:$accent;
+				border-radius:3.1px 3.1px 0 0;
+				background:#fff;
+				
+				a {
+					background:#fff;
+					border-color:#fff;
+					color:inherit;
+					box-shadow:none;
+					&:hover {
+						cursor:default;
+					}
+				}
+			}
+			&.cta {
+				a {
+					/*border-color:rgba($orange-color, 0.4);
+					font-weight:bold;*/
+					@include gradient($cta1-color, darken($cta1-color, 10%));
+					@include single-transition;
+					border-bottom:1px solid rgba(#000, 0.4);
+					box-shadow:0 1px 2px #666, 0 1px 0 scale-color($cta1-color, $lightness:60%) inset;
+					color:#fff;
+					font-weight:bold;
+					text-shadow:0 -1px 1px rgba(#000, 0.4);
+				}
+				&:hover a {
+					background:cta1-color !important;
+				}
+				&.active,
+				&:active {
+					a {
+						background:#fff;
+						border: none;
+						box-shadow:none;
+						text-shadow: none;
+						color: $body-font-color;
+					}
+				}
+			}
+		}
+	}
+	
+	.tabs-content {
+		margin-top:$rem-base;
+	}
+	
+	@media #{$medium-up} {
+	}
+	@media #{$large-up} {
+	}
+}
+
+.toplist-component {
+	counter-reset: section;
+	
+	.inner {
+		padding:10px;
+		
+		> header {
+			@extend .component-head-divider;
+			margin-bottom:rem-calc(15);
+		}
+	}
+	
+	h3 {
+		margin-top:-2px;
+		margin-bottom:0;
+		line-height:100%;
+		
+		& + h6 {
+			margin-top:-2px;
+			color:darken(#fff, 50%);
+		}
+	}
+	
+	ol {
+		counter-reset: li;
+		margin-left:0;
+		list-style:none;
+		& > li {
+			@include grid-row();
+			position:relative;
+			height:rem-calc(70);
+			overflow:hidden;
+			counter-increment: li;
+			margin-top:5px;
+			margin-left:0;
+			background:scale-color($primary-color, $lightness:95%);
+			border:2px solid scale-color($primary-color, $lightness:60%);
+			border-radius:$global-radius;
+			
+			h4 {
+				margin:rem-calc(0 0 -2);
+				font-size:$h6-font-size;
+				font-weight:100;
+				@include truncate;
+			}
+			
+			p {
+				@include truncate;
+				margin-bottom:0;
+				color:#444;
+				font-size:12px;
+			}
+			
+			&:first-child {
+				border-color: scale-color($primary-color, $lightness:20%);
+				&:before { background:scale-color($primary-color, $lightness:20%); }
+			}
+			
+			&:before {
+				content: counter(li);
+				position:absolute;
+				top:0;
+				left:0;
+				z-index:10;
+				font-family: 'Nunito', sans-serif;
+				font-weight:700;
+				font-size:20px;
+				text-align: center;
+				color:#fff !important;
+				width:20px;
+				background:scale-color($primary-color, $lightness:60%);
+				border-radius:0 0 $global-radius 0;
+			}
+			
+			&:hover {
+				@include hover-fx;
+			}
+			
+			figure {
+				@include grid-column(3, $collapse:true); 
+			}
+			
+			> div {
+				@include grid-column(9);
+				position: relative;
+			}
+			
+			.star-rating {
+				display:inline-block;
+				margin-left:-2px;
+				margin-bottom:0;
+			}
+			
+			.zoover-rating {
+				@include zoover-rating;
+				display:inline-block;
+			}
+			
+			.star-rating + .zoover-rating {
+				margin-left:rem-calc(5);
+			}
+		}
+	}
+	
+	&.no-list {
+		ol > li {
+			background:#fff;
+			&:before {
+				content:"";
+				width:0;
+				background:none;
+			}
+			&:first-child { border-color:scale-color($primary-color, $lightness:60%); }
+		}
+	}
+	
+	&.small {
+		.star-rating li:before,
+		.zoover-rating,
+		.zoover-rating:before { color:#fff !important; }
+		
+		.inner > ol > li {
+			height:rem-calc(100);
+			
+			> div {
+				width:100%;
+				position:absolute;
+				top: rem-calc(42);
+				padding:0 $rem-base/2;
+				text-shadow:0 1px 2px #000;
+				
+				h4, p, a { color:#fff !important; }
+				
+				h4{ font-size:rem-calc(14); line-height:1.2; }
+				p, span { font-size:rem-calc(12); line-height:1.1; }
+				h4 + p {margin-top:5px;}
+				span + p {margin-top:-5px;}
+			}
+			
+			figure {
+				width:100%;
+				position:relative;
+				height:rem-calc(100);
+				opacity:1;
+				@include single-transition;
+				&:before {
+					content:"";
+					opacity:1;
+					
+					background:url(../images/gradient-contrast-text.png) repeat-x bottom;
+					position:absolute;
+					bottom:0;
+					left:0;
+					height:100%;
+					width:100%;
+				}
+			}
+			
+			&:hover,
+			&:focus {
+				.star-rating li:before,
+				.zoover-rating,
+				.zoover-rating:before { color:inherit !important; }
+				
+				> div {
+					text-shadow: none;
+					h4, p, a { color:#333 !important; }
+				}
+				figure {
+					opacity:0.2;
+					&:before {	opacity:0;	}
+				}
+			}
+		}
+	}
+	
+	&.viewed-by-other,
+	&.viewed-by-you,
+	&.most-relevant {
+		.inner > header {
+			min-height: rem-calc(70);
+		}
+	}
+}
+
+.special-component {
+	> .inner > header {
+		@extend .component-head-divider;
+		margin-bottom:rem-calc(15);
+		min-height: rem-calc(70);
+	}
+}
+
+.taskbar-component {
+	$color1:#ddd;
+	$color2:$cta2-color;
+	
+	@include button-group-container();
+	& > li {
+		@include button-group-style(
+			$radius:true
+		);
+		
+		a,
+		button {
+			@include button($padding:$button-tny, $bg:$color1);
+			@include single-transition;
+			&.primary {
+				@include button($padding:$button-tny);
+			}
+		}
+	}
+}
+
+.modal-component {
+	@include reveal-modal-base(
+		$base-style:true,
+		$width:$reveal-default-width
+	);
+	@include reveal-modal-style(
+		$bg:whitesmoke,
+		$border:true,
+		$border-style:$reveal-border-style,
+		$border-width:$reveal-border-width,
+		$border-color:$reveal-border-color,
+		$box-shadow:true,
+		$top-offset:30px
+	);
+	border-radius:$global-radius;
+	padding:0;
+	
+	header {
+		padding:rem-calc(15 30 15 15);
+		background-color:#fff;
+		border-bottom:1px solid #ddd;
+		border-radius:$global-radius $global-radius 0 0;
+		overflow:hidden;
+		position:relative;
+		
+		h2 {
+			margin:0;
+			font-size: $h3-font-size;
+			color: #666;
+		}
+	}
+	
+	.inner {
+		padding:rem-calc(15);
+	}
+	
+	.close-reveal-modal {
+		position:absolute;
+		top: 0;
+		right: 0;
+		padding: rem-calc(10);
+		height:100%;
+		background:#fff;
+		
+		&:before {
+			@include fontello('\e819', $icon-size:20px, $icon-color:#444);
+		}
+	}
+	
+	@media #{$small-up} {
+		@include reveal-modal-base($base-style:true, $width:90%);
+	}
+	
+	@media #{$medium-up} {
+		@include reveal-modal-base($base-style:true, $width:70%);
+	}
+	
+	@media #{$large-up} {
+		@include reveal-modal-base($base-style:true, $width:40%);
+	}
+}
+
+.form-component {
+	@include grid-row;
+	border-top:1px solid #ddd;
+	border-bottom:1px solid #ddd;
+	margin-bottom:20px;
+	.inner > section {
+		@include grid-row($behavior:collapse);
+	}
+	
+	&.call-me-back {
+		.inner {
+			@include grid-column(8, $collapse:true, $center:true);
+		}
+		@media #{$small-up} {
+			.inner {
+				@include grid-column(12, $collapse:true);
+			}
+		}
+		
+		@media #{$medium-up} {
+			.inner {
+				@include grid-column(8, $collapse:true);
+			}
+		}
+		
+		
+	}
+}
+
+.gm-style-iw {
+	overflow:hidden !important;
+	> div {
+		overflow:hidden !important;
+	}
+}
+.info-window {
+	$window-width:320px;
+	
+	position:relative;
+	width:$window-width;
+	height:320px;
+	
+	header {
+		position:absolute;
+		display:table;
+		top:0;
+		left:0;
+		z-index:1;
+		background-color:#fff;
+		width:$window-width;
+		box-shadow:0 1px 5px #999;
+		@extend .component-head-divider;
+		
+		small {
+			font-size:90%;
+			font-weight:400;
+			color:darken(#fff, 40%);
+		}
+		
+		h3 {
+			width:$window-width;
+			@include truncate;
+			margin-top:0;
+		}
+	}
+	
+	.inner {
+		overflow:auto;
+		-webkit-appearance: none;
+		-webkit-overflow-scrolling: touch;
+		padding-right:16px;
+		
+		figure {
+			margin:0 0 16px;
+		}
+		
+		p {
+			font-size:14px;
+			line-height:1.3;
+		}
+	}
+	
+	&.acco {
+		.inner {
+			height:265px;
+			top:38px;
+		}
+		
+		footer {
+			position:absolute;
+			display:table;
+			bottom:0;
+			left:0;
+			z-index:1;
+			background-color:#fff;
+			width:$window-width;
+			height:32px;
+			//padding:8px 0;
+			border-top:1px solid #ddd;
+			
+			> a {
+				@include button($padding:$button-tny, $bg:$primary-color, $radius:true);
+				@include single-transition;
+				margin:8px 0 0;
+				font-size:$rem-base;
+			}
+		}
+	}
+	
+	&.poi {
+		.inner {
+			height:310px;
+			top:50px;
+		}
+		footer {
+			display:none;
+		}
+	}
+}
+
+
+// End Googlemaps Tooltip
+
+/*Nieuwsbrief*/
+.nieuwsbrief {
+	label {
+		margin:0 0 5px;
+		font-weight:400;
+	}
+	label[for*="checkbox"] {
+		margin-left:15px;
+	}
+	input[type="checkbox"] {
+		margin:0 7px 0 -20px;
+	}
+	.aanhef {
+		margin:0;
+		list-style: none;
+	}
+	[class*="block-grid-"] > li {
+		padding-bottom:0;
+	}
+}
+
+/*Breedte formulier o.b.v. schermgrootte*/
+@media #{$small-up} {
+	.modal-newsletter { 
+		width:95%;
+		margin-left:-47.5%;
+	}
+}
+@media #{$medium-up} {
+	.modal-newsletter {
+		width:80%;
+		margin-left:-40%;
+	}
+}
+@media #{$large-up} {
+	.modal-newsletter {
+		width:60%;
+		margin-left:-30%;
+	}
+}
+@media #{$xlarge-up} {
+	.modal-newsletter {
+		width:40%;
+		margin-left:-20%;
+	}
+}
+
+.djiv-ui {
+	select,
+	input[type="text"] {
+		-moz-appearance: none;
+		border-color: rgba(255, 255, 255, 0.5);
+		border-radius: 3px;
+		
+		box-shadow: 0 0 5px rgba(204, 204, 204, 0.5) inset;
+		color: #444;
+		height: 30px;
+		padding: 5px 10px;
+		text-indent: 0.01px;
+		text-overflow: "";
+		
+		&:hover {
+			background-color: #fff;
+			color: #333;
+		}
+	}
+	
+	select {
+		//background: url("../images/arrow.png") no-repeat scroll right 1px center;
+		background-image: url("../images/arrow.png");
+		background-position:right 1px center;
+		background-repeat:no-repeat;
+		background-color: #f2f2f2;
+	}
+	
+	input[type="text"]:focus + .inline-tooltip {
+		//display: block;
+		opacity:1;
+		margin-top:rem-calc(-15);
+	}
+	
+	.inline-tooltip {
+		//display: none;
+		position: absolute;
+		z-index: 99;
+		background: #555;
+		margin-top:0;
+		padding: rem-calc(10 15);
+		width:100%;
+		border: 1px solid #333;
+		font-size: 11px;
+		font-weight: normal;
+		line-height: 1.2;
+		color: #fff;
+		text-shadow: 0px 0px 1px #000;
+		box-shadow: 0px 1px 3px #555;
+		opacity:0;
+		transition: all 0.45s ease 0s;
+		
+		&:after,
+		&:before {
+			bottom: 100%;
+			left: 20px;
+			border: solid transparent;
+			content: " ";
+			height: 0;
+			width: 0;
+			position: absolute;
+			pointer-events: none;
+		}
+		&:after {
+			border-color: rgba(85, 85, 85, 0);
+			border-bottom-color: #555555;
+			border-width: 5px;
+			margin-left: -5px;
+		}
+		&:before {
+			border-color: rgba(51, 51, 51, 0);
+			border-bottom-color: #333333;
+			border-width: 6px;
+			margin-left: -6px;
+		}
+	}
+	
+}
+
+/*Hack voorkomt dubbele pijl in IE9
+select {
+	 background-image:none\0;
+	 -webkit-appearance: none !important;
+	 -moz-appearance: none !important;
+}*/
+
+/*Zoom UI components Google Maps reset*/
+#map-canvas {
+	img {
+		max-width:none !important;
+	}
+}
+
+/*FIX for Bootstrap and Google Maps Info window styes problem */
+img[src*="gstatic.com/"], img[src*="googleapis.com/"] {
+	max-width: none;
+}
+
+/*------------------------------------*\
+    #OAD-WHITELABEL
+\*------------------------------------*/
+
+/**
+ * Variables
+ */
+
+$oad-yellow:#fff021;
+$oad-black:#010001;
+$oad-offer-red:rgb(208,37,46);
+$oad-gray:#d5dbe5;
+$oad-link:#4192E4;
+//$highlight-color:lighten($oad-yellow, 65%) !important;
+/**
+ * Typo
+ */
+
+.wl-oad {
+	body {
+		font-family: 'OpenSans-Regular', 'Arial', 'sans-serif', monospace !important;
+		color: #333;
+	}
+	
+	h1, h2, h3, h4, h5, h6 {
+		font-family: 'OpenSans-Regular', 'Arial', 'sans-serif', monospace !important;
+		font-weight: 500;
+		line-height: 1.1;
+		color: inherit;
+	}
+	a, a:link, .linkme, .more-info, .more-info-link, .travellength_selector .days {
+		color:$oad-link;
+	}
+}
+
+/**
+ * Structure
+ */
+ 
+.wl-oad {
+	header[role="banner"] {
+		margin-bottom:30px;
+	}
+	footer[role="contentinfo"] {
+		max-width:100%;
+		background: #9ba1a9 !important;
+		box-shadow: none;
+		
+		div.columns {
+			background: #9ba1a9 !important;
+		}
+	}
+	.oad-logo {
+		height:50px;
+		background:$oad-yellow;
+		
+		> img {
+			margin-left:-37px;
+			margin-top:-2px;
+		}
+	}
+	.oad-phone {
+		background:$oad-black;
+		height:38px;
+		h6 {
+			margin:10px 0;
+			text-align:right;
+			color:#d8d7d8;
+		}
+	}
+}
+
+/**
+ * Components
+ */
+
+.wl-oad {
+	.usp-component {
+		display: none !important;
+	}
+	
+	.breadcrumb-component > div {
+		box-shadow: none;
+	}
+	
+	.star-rating > li:before {
+		color:$oad-black;
+	}
+	
+	.cta1-button {
+		background:$oad-yellow;
+		box-shadow: none;	
+		color:$oad-black !important;
+		font-weight: 500;
+		text-shadow: none;
+	}
+	.price-product .price-tag {
+		background:none;
+		.price {
+			background: none;
+			transform:none;
+			line-height:1.3;
+			font-size:28px;
+			&:before {
+				content:"vanaf";
+				font-size:12px;
+				display:block;
+				color:#666;
+				font-weight:normal;
+			}
+			
+			&:after {
+				content:"p.p.";
+				font-size:12px;
+				display:block;
+				color:#666;
+				font-weight:normal;
+			}
+		}
+	}
+	.bookingstep {
+		color:#ccc;
+	}
+	#product_tabs_general ul {
+		background:$oad-link;
+		border:none;
+		& > li {
+			margin-right:2px;
+			a {
+				border:none;
+				color:#fff;
+				&.current, &:hover {color:$oad-black;}
+				
+			}
+		}
+	}
+	.configuration_wrapper .configuration_heading h3 {
+		border-color:$oad-gray;
+	}
+	.travellength_selector .days.selected { background:$oad-yellow; border-color:#c5c5c5;}
+	.legenda .list_legenda>li .selected { background:$oad-yellow; }
+	.legenda .list_legenda>li .offer, .travellength_selector .day_selector tbody td.offer time { background:$oad-offer-red; color:#fff}
+	
+	.travellength_selector .day_selector tbody td.selected, .travellength_selector .day_selector tbody td.selected.offer, .travellength_selector .day_selector tbody td.selected.offer:hover, .travellength_selector .day_selector tbody td.selected:hover {
+		background-color: $oad-yellow;
+	}
+	.travellength_selector .days.selected {color:#333;}
+	.product-offer h3 { background:$oad-offer-red; color:#fff; text-shadow: none; }
+	.aside-component.booking-summary h3, .aside-component.travel-summary h3 { background:$oad-gray; color:#333; text-shadow: none; }
+	.product_overview h3 {background:$oad-link; color:#fff; text-shadow: none;}
+	.pagination-simple>div a.next { color:$oad-link }
+	.pagination-simple.primary a.next { background:$oad-link; border: none; color:#fff; }
+	
+	.header-checkout {
+		margin-top:rem-calc(15);
+		margin-bottom: rem-calc(15);
+		background: url($cdnbf+'/siteimages/oad/oad-header-logo.png') 0px 5px no-repeat;
+		.warranty-partners {
+			margin-top:0;
+		}
+	}
+}

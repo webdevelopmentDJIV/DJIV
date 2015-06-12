@@ -1,0 +1,180 @@
+footer[role="contentinfo"] {
+	background:darken(#fff, 5%);
+	//margin-top:1.333em;
+	box-shadow:0px 1px 5px #ddd inset;
+	color:#666;
+	
+	h6 {
+		color:#666;
+	}
+	
+	p {
+		font-size:rem-calc(13);
+		line-height:1.3em;
+	}
+	
+	> div:first-child {
+		@include grid-row();
+		padding-top: 2*$rem-base;
+	}
+	
+	.footer-service {
+		@include grid-column(3);
+		
+		> ul {
+			@include side-nav();
+			padding-top:0;
+			
+			& > li {
+				font-size:rem-calc(13);
+				line-height:1.3em;
+				
+				> a {
+					display:block;
+				}
+			}
+		}
+		
+		.call-help {
+			span,
+			small {
+				display:block;
+				color:#666;
+			}
+			
+			span {
+				&:before {
+					@include fontello("\e849");
+					@include rotate(45);
+					margin-left:rem-calc(-5);
+					margin-bottom:rem-calc(5);
+				}
+			}
+			
+			small {
+				font-size: 75%;
+			}
+		}
+	}
+	
+	.footer-social {
+		@include grid-column(3);
+		
+		img {
+			float:left;
+			width:4.666em;
+			margin-right:.5em;
+		}
+
+		a.subscribe {
+			display:block;
+			padding-top:.5 * $rem-base;
+		}
+	}
+	
+	.footer-trust {
+		@include grid-column(6);
+	}
+}
+
+.social-media {
+	@include inline-list;
+	
+	& > li {
+		> a {
+			font-size:rem-calc(22);
+			text-decoration: none;
+		}
+	}
+}
+
+.trustmarks {
+	@include inline-list;
+	margin-top:5px;
+	li {
+		background:url($cdnbf+"/siteimages/sprt_footer.png") no-repeat;
+		
+		&.payments {
+			background-position:0 0;
+			width:103px;
+		}
+		
+		&.guarentees {
+			background-position:-103px 0;
+			width:100px;
+		}
+		
+		&.insurances {
+			background-position:-203px 0;
+			width:50px;
+		}
+	}
+	
+	a {
+		display:block;
+		height:18px;
+	}
+}
+
+
+.corporate-usp {
+	ul {
+		& > li {
+			line-height:1.5;
+			font-size:rem-calc(13);
+		}
+	}
+}
+
+.corporate-footer {
+	background:$body-font-color;
+	margin-top:$rem-base;
+	
+	> div {
+		@include grid-row;
+	}
+	
+	.corporate-themes {
+		@include grid-column(6, $collapse:true);
+		
+		> ul {
+			@include button-group-container();
+			
+			& > li {
+				@include button-group-style($even:5);
+				
+				> a {
+					@include button();
+					border-width:1px;
+					@include single-transition;
+					margin-bottom:0;
+					padding-top:rem-calc(5);
+					padding-bottom:rem-calc(10);
+					font-size:rem-calc(13);
+					font-weight:normal;
+					text-align:right;
+					line-height:1;
+					
+					&.bus {@include button-style($bus-color);}
+					&.auto {@include button-style($auto-color);}
+					&.vlieg {@include button-style($vlieg-color);}
+					&.verre {@include button-style($ver-color);}
+					&.steden {@include button-style($steden-color);}
+				}
+			}
+		}
+	}
+	
+	.pay-off {
+		@include grid-column(6, $collapse:true);
+		
+		> h2 {
+			color:white;
+			font-size:rem-calc(22);
+			font-weight:normal;
+			text-align:right;
+			line-height:1.6;
+			margin:rem-calc(2 0 0 0);
+		}
+	}
+}

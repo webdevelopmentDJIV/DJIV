@@ -1,0 +1,347 @@
+// Make sure the charset is set appropriately
+@charset "UTF-8";
+
+// Global Foundation Settings
+@import "foundation/settings";
+//@import "compass";
+//@import "compass/css3/flexbox";
+
+// You can import only specific elements by adjusting the import below
+@import "foundation";
+@import "customgrids";
+@import "elements";
+@import "productlist";
+@import "header";
+@import "footer";
+
+// Typo
+h1 {
+	color:scale-color($primary-color, $lightness:10%);
+	font-weight:400;
+}
+h2 {
+	color:scale-color($primary-color, $lightness:10%);
+	font-weight:300;
+	font-size:$h3-font-size;
+}
+
+// Page - layout
+section {
+	> header {
+		@include grid-row;
+		h2{
+			@include grid-column(12);
+		}
+	}
+	article > header {
+		padding:rem-calc(0 0 15);
+	}
+}
+
+.top-content,
+.main-content,
+.facts,
+.social,
+.media {
+	@include grid-row;
+}
+
+.top-content{
+	position:relative;
+	
+	.banner {
+		@include grid-column(12, $collapse:true);
+		img {
+			border-radius:$global-radius $global-radius 0 0;
+		}
+	}
+	
+	.quote {
+		@include grid-row($behavior:nest);
+		position:absolute;
+		top:45%;
+		left:0;
+		right:0;
+		width:66%;
+		margin:0 auto;
+		background:rgba($primary-color, 0.8);
+		border-radius:$global-radius;
+		
+		figure {
+			@include grid-column(2);
+			text-align: center;
+			img {
+				margin-top:$rem-base;
+				margin-bottom:$rem-base;
+				border-radius: $global-rounded;
+				border:5px solid scale-color($primary-color, $lightness:50%);
+			}
+		}
+		
+		blockquote {
+			@include grid-column(10);
+			margin:rem-calc(0 0 10); /*override foundation*/
+			border:none; /*override foundation*/
+			p,
+			cite {
+				color: #fff;
+				text-shadow:1px 1px 1px darken($primary-color, 20%);
+			}
+			p {
+				font-size:rem-calc(22);
+				font-weight:200;
+				line-height:1.2;
+				margin-bottom:rem-calc(10);
+			}
+			cite {
+				span {
+					margin-right:rem-calc(10);
+					font-weight:700;
+				}
+			}
+		}
+	}
+}
+
+.main-content{
+	margin-top:rem-calc(-20);
+	padding: rem-calc(20 0);
+	border-bottom:1px dotted scale-color($primary-color, $lightness:80%);
+	background:#fff;
+	> div {
+		@include grid-column(8);
+	}
+	> aside {
+		@include grid-column(4);
+	}
+}
+
+.quick-task {
+	>ul {
+		margin:0;
+		list-style:none;
+		
+		& > li {
+			a {
+				display:block;
+				padding:5px 5px 0 20px;
+				line-height:120%;
+				
+				&:before {
+					@include fontello('\e864', $icon-color:scale-color($primary-color, $lightness:20%));
+					margin:0 10px 0 -25px;
+				}
+			}
+		}
+	}
+}
+
+.usp-component {
+	>ul {
+		@include block-grid($per-row: 1);
+		& > li {
+			position:relative;
+			
+			&:before {
+				@include fontello("\e8ca", $icon-size:12px, $icon-color:#fff, $icon-margin:0);
+				position:absolute;
+				top:3px;
+				padding-top:7px;
+				width:22px;
+				height:22px;
+				background-color:lighten($primary-color, 30%);
+				border-radius:$global-rounded;
+			}
+		
+			h3 {
+				padding-left:30px;
+				font-size:$h5-font-size;
+				color:#555;
+			}
+			
+			p {
+				margin-top:-5px;
+				margin-bottom:0;
+				padding-left:30px;
+				color:#666;
+				line-height:1.3;
+				
+				> img {
+					margin-top:5px;
+				}
+			}
+			
+			/*.pay {
+				display:inline-block;
+				background:url("http://media.dejongintra.nl/styles/siteimages/sprt_footer.png") no-repeat -102px 0;
+				height: 18px;
+				width: 100%;
+				margin-top:rem-calc(5);
+			}*/
+		}
+	}
+}
+
+.facts {
+	padding: rem-calc(20 0);
+	border-bottom:1px dotted scale-color($primary-color, $lightness:80%);
+	
+	header {
+		margin-bottom:$rem-base;
+	}
+	
+	article {
+		>*{text-align: center;}
+		h3 {
+			color:lighten($primary-color, 30%);
+		}
+		p {
+			line-height:1.2;
+			margin-bottom:0;
+			color: #666;
+		}
+	}
+	
+	.bookings {
+		@include grid-column(3);
+	}
+	
+	.reisgraag {
+		@include grid-column(3);
+		.inner {
+			@include grid-row($behavior:nest-collapse);
+		}
+		figure {
+			@include grid-column(4, $collapse:true);
+		}
+		div {
+			@include grid-column(8);
+		}
+	}
+	
+	.since {
+		@include grid-column(3);
+		h3 span {
+			display:block;
+			margin-top:rem-calc(-16);
+			font-size:60%;
+			line-height:1;
+		}
+	}
+	
+	.employees {
+		@include grid-column(3);
+	}
+}
+
+.social {
+	padding: rem-calc(20 0);
+	border-bottom:1px dotted scale-color($primary-color, $lightness:80%);
+	
+	.quote {
+		@include grid-column(8);
+	}
+	
+	.social-media {
+		@include grid-column(4);
+		margin:0;
+	}
+	
+	.share-buttons {
+		@include block-grid(2);
+		&>li {
+			a {
+				display:block;
+				text-align:center;
+				img {
+					width: 50%;
+					border-radius:rem-calc(15);
+					border:2px solid #fff;
+					box-shadow:0px 1px 3px #555;
+				}
+				h6 {
+					position:relative;
+					margin-top:rem-calc(15);
+					font-weight:200;
+					color:#666;
+					
+					&:before {
+						content:"";
+						@include arrow(top, #ddd, 7px);
+						position:absolute;
+						margin:0 auto;
+						top:-7px;
+						left:0;
+						right:0;
+					}
+					
+					span {
+						background:#ddd;
+						display:inline-block;
+						padding:rem-calc(5 8);
+						border-radius:$global-rounded;
+					}
+				}
+				&:hover {
+					img {box-shadow:0px 0px 2px #666;}
+				}
+			}
+		}
+	}
+}
+
+.inline-quote-component {
+	position:relative;
+	border:none;
+	p {
+		margin-bottom:rem-calc(10);
+		padding:rem-calc(0 20);
+		text-align:justify;
+		color:#666;
+		
+		&:before,
+		&:after {
+			content: "\201C";
+			position: absolute;
+			font-size: 60px;
+			line-height: 1;
+			color: scale-color($purple-color, $lightness:50%);
+			font-family:Georgia, serif;
+			font-style: normal;
+		}
+		
+		&:before {
+			top: 10px;
+			left: 0px;
+		}
+		
+		&:after {
+			content: "\201D";
+			right: -5px;
+			bottom: 0;
+		}
+	}
+}
+
+.media {
+	padding: rem-calc(20 0);
+	
+	article {
+		@include grid-column(6);
+		position:relative;
+	}
+	.flex-video {
+		margin-top:-67%;
+	}
+	.flex-video embed,
+	.flex-video iframe,
+	.flex-video object,
+	.flex-video video {
+		width:96%;
+		height:75%;
+		left:2%;
+	}
+	.tv-overlay {
+		//position:absolute;
+	}
+}

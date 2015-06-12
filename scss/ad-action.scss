@@ -1,0 +1,293 @@
+// Make sure the charset is set appropriately
+@charset "UTF-8";
+
+// Global Foundation Settings
+@import "foundation/settings";
+
+// You can import only specific elements by adjusting the import below
+@import "foundation";
+@import "customgrids";
+@import "elements";
+
+
+/*------------------------------------*\
+    #FOUNDATION
+\*------------------------------------*/
+
+/**
+ * grid
+ */
+ 
+.row {
+	max-width:rem-calc(840);
+}
+
+/**
+ * Typo
+ */
+
+h1 {
+	color:scale-color($primary-color, $lightness:10%);
+	font-weight:400;
+}
+
+h2 {
+	color:scale-color($primary-color, $lightness:10%);
+	font-weight:300;
+	font-size:$h3-font-size;
+}
+
+/*------------------------------------*\
+    #TOP 5
+\*------------------------------------*/
+
+.ad-action__usp {
+	.usp-component {
+		margin:rem-calc(30 0);
+		//border-width:1px 0;
+		//border-style: solid;
+		//border-color: #ddd;
+		background:#eee;
+		& > li {
+			padding-top:rem-calc(10);
+			padding-bottom:rem-calc(10);
+			&:before {
+				top:rem-calc(13);
+				width: 22px;
+				height: 22px;
+				font-size: 11px;
+			}
+			
+			h3 {
+				font-size: rem-calc(16);
+			}
+			
+			p {
+				font-size: rem-calc(12);
+				margin-bottom:0;
+			}
+		}
+	}
+}
+
+.ad-action__content {
+	.ad-action__header {
+		//border-bottom:2px solid scale-color($red-color, $lightness:50%);
+		margin-bottom:$rem-base;
+		text-align:center;
+	
+		h2+h6 {
+			margin-top:rem-calc(-10);
+			font-weight:400;
+			color: gray;
+		}
+		
+		h2 .attention {
+			text-transform:uppercase;
+			font-weight:700;
+			color:$red-color;
+		}
+	}
+}
+
+.ad-action__items {	
+	
+	@media #{$small-up} {
+		@include block-grid(1);
+	}
+	
+	@media #{$medium-up} {
+		@include block-grid(2);
+	}
+	
+	
+	.ad-action__item {
+		position:relative;
+		clear: none !important;
+		
+		&.jumbo {
+			width:100%;
+			
+			.item-title {
+				@media #{$small-up} {
+					font-size:$h3-font-size;
+					font-weight:300;
+				}
+				
+				@media #{$medium-up} {
+					font-size:$h1-font-size;
+					font-weight:700;
+				}
+			}
+		}
+		
+		.item-image {
+			position:relative;
+			
+			
+			&:before {
+				content:"";
+				@include single-transition;
+				width:100%;
+				height:100%;
+				left:0;
+				right:0;
+				margin:0 auto;
+				position:absolute;
+				background: rgba(#000, 0.3);
+				opacity:0;
+			}
+		}
+		
+		&:hover .item-image:before {opacity:1;}
+		
+		.item-title {
+			position:absolute;
+			left:0;
+			right:0;
+			margin:0 auto;
+			text-align:center;
+			color:#fff;
+			text-shadow:1px 1px 1px rgba(0,0,0,0.8);
+			z-index:1;
+			
+			@media #{$small-up} {
+				top:20%;
+				font-weight:300;
+			}
+			
+			@media #{$medium-up} {
+				top:40%;
+				font-weight:500;
+			}
+		}
+	
+		.item-link {
+			position:absolute;
+			display:block;
+			left:rem-calc(10);
+			right:rem-calc(10);
+			top:0;
+			bottom:rem-calc(20);
+			//height:100%;
+			z-index:1;
+			border:1px solid #fff;
+			box-shadow:0 0 1px rgba(#000, .8);
+			
+			&:hover {
+				box-shadow:0 0 1px rgba(scale-color($primary-color, $lightness:30%), 1);
+			}
+		}
+		
+		.item-content {
+			position:relative;
+			overflow:hidden;
+			display:block;
+			background: #fff;
+			color: $primary-color;
+
+			/*background-color: scale-color($primary-color, $lightness:30%);
+			color:#fff;*/
+			
+			p {
+				padding: rem-calc(20 5 10 10);
+				margin-bottom:0;
+				white-space: nowrap;
+				
+				@include truncate;
+			}
+			
+			.star-rating {
+				position:absolute;
+				top: rem-calc(8);
+				display:inline-block;
+				
+				/*> li:before {
+					color: #fff;
+				}*/
+			}
+			
+			.price {
+				@include gradient(scale-color($primary-color, $lightness:30%), $primary-color);
+				position:relative;
+				white-space: nowrap;
+				//background-color: $primary-color;
+				color: #fff;
+				margin:rem-calc(2);
+				border-radius:2px;
+				
+				&:before {
+					content:"Bekijken";
+					position:absolute;
+					display:inline-block;
+					margin:rem-calc(-13) auto 0px auto;
+					font-size:rem-calc(12);
+				}
+				
+				&:after {
+					@include fontello("\e864", $icon-color:scale-color($primary-color, $lightness:30%), $icon-size:20px);
+				}
+				
+				> span {
+					display:inline-block;
+					padding-left:5px;
+					font-size:60%;
+				}
+			}
+			
+			@media #{$small-up} {
+				.price:before {
+					width:rem-calc(50);
+					left:0;
+					right:0;
+				}
+				.star-rating {
+					left: 0;
+					right:0;
+					margin: 0 auto;
+					width: rem-calc(64);
+				}
+				p {
+					font-size:10px;
+				}
+				.star-rating > li {
+					font-size:8px;
+				}
+			}
+			@media #{$medium-up} {
+				.price:before {
+					width:rem-calc(50);
+					left:inherit;
+					right:rem-calc(55);
+				}			
+				.star-rating {
+					left: rem-calc(10);
+					right:inherit;
+					margin:inherit;
+					width: rem-calc(70);
+				}
+				p {
+					font-size:13px;
+				}
+				.star-rating > li {
+					font-size:10px;
+				}
+			}
+			@media #{$large-up} {
+				.star-rating {
+					width: rem-calc(80);
+				}
+				p {
+					font-size:15px;
+				}
+				.star-rating > li {
+					font-size:12px;
+				}
+				/*p,
+				.star-rating > li {
+					font-size:16px;
+				}*/
+			}
+		}
+	}
+}
